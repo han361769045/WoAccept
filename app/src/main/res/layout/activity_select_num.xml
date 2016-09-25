@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".activities.SelectNumActivity">
+
+    <com.neusoft.woaccept.customview.MyTitleBar
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        app:mCustomView="@layout/title_num_search"
+        app:mCustomViewGravity="mRight"
+        app:mCustomViewMarginLeft="@dimen/_55dp"
+        app:mCustomViewMarginRight="@dimen/_15dp"
+        app:mNavButtonIcon="@drawable/title_back"
+        app:mStatueBarIsTransparent="true"/>
+
+    <include layout="@layout/filter_condition"/>
+
+    <include layout="@layout/horizontal_line"/>
+
+    <com.leo.lu.hfrefreshrecyclerview.CustomHFRefreshRecyclerView
+        android:id="@+id/ultimate_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:recyclerviewClipToPadding="true"
+        app:recyclerviewEmptyView="@layout/empty_view"
+        app:recyclerviewScrollbars="vertical"/>
+
+</LinearLayout>

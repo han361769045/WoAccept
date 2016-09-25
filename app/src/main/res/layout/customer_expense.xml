@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/match_wrap"
+              android:background="@color/white"
+              android:orientation="vertical"
+              android:paddingBottom="10dp"
+              android:paddingLeft="20dp"
+              android:paddingRight="20dp"
+              android:paddingTop="10dp">
+
+    <TextView
+        style="@style/match_wrap"
+        android:layout_marginBottom="10dp"
+        android:text="@string/payment_user_fee_info"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <include layout="@layout/horizontal_line"/>
+
+    <RelativeLayout
+        style="@style/match_wrap"
+        android:paddingBottom="5dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            style="@style/payment_text_left"
+            android:text="@string/payment_user_balance"/>
+
+        <TextView
+            android:id="@+id/txt_balance"
+            style="@style/payment_text_right"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/match_wrap"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <TextView
+            style="@style/payment_text_left"
+            android:text="@string/payment_user_fee"/>
+
+        <TextView
+            android:id="@+id/txt_fee"
+            style="@style/payment_text_right"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/match_wrap"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <TextView
+            style="@style/payment_text_left"
+            android:text="@string/payment_overdue_bill"/>
+
+        <TextView
+            android:id="@+id/txt_bill"
+            style="@style/payment_text_right"
+            android:textColor="@color/colorPrimary"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/match_wrap"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <TextView
+            style="@style/payment_text_left"
+            android:text="@string/payment_reputation"/>
+
+        <TextView
+            android:id="@+id/txt_reputation"
+            style="@style/payment_text_right"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

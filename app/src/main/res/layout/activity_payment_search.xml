@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.neusoft.woaccept.customview.MyTitleBar
+        android:id="@+id/my_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        app:mCustomView="@layout/title_search"
+        app:mCustomViewGravity="mLeft"
+        app:mCustomViewMarginLeft="@dimen/_15dp"
+        app:mCustomViewMarginRight="@dimen/_50dp"
+        app:mRightText="取消"
+        app:mRightTextColor="@color/black"
+        app:mRightTextMarginRight="@dimen/_15dp"
+        app:mStatueBarIsTransparent="true"
+        />
+
+    <include layout="@layout/horizontal_line"/>
+
+    <LinearLayout
+        android:id="@+id/ll_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:clickable="true"
+        android:orientation="horizontal"
+        android:padding="@dimen/_10dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_10dp"
+            android:drawableStart="@drawable/search"
+            android:gravity="center_vertical"
+            android:text="@string/payment_search_hint"/>
+
+        <TextView
+            android:id="@+id/txt_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorPrimary"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="tabTitle">
+        <item>@string/home</item>
+        <item>@string/service</item>
+        <item>@string/order</item>
+        <item>@string/mine</item>
+
+    </string-array>
+
+    <string-array name="tabTag">
+        <item>home</item>
+        <item>service</item>
+        <item>order</item>
+        <item>mine</item>
+    </string-array>
+
+    <string-array name="money">
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
+        <item>300</item>
+        <item>500</item>
+        <item>自定义</item>
+    </string-array>
+
+    <string-array name="vp_titles">
+        <item>@string/new_cbss</item>
+        <item>@string/new_bss</item>
+    </string-array>
+
+</resources>

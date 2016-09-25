@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/_15dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="@string/prelan"
+            android:textColor="@color/app_black_text"
+            android:textSize="@dimen/_15sp" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch_bss_preplan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/switch_bg"
+            android:checked="false"
+            android:thumb="@null"
+            app:track="@null" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bss_select_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="45dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_15dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="@string/select_num"
+            android:textColor="@color/app_black_text"
+            android:textSize="@dimen/_15sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_15dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/select_num" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/bss_num_is_selected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="已选号码:"
+            android:textColor="@color/app_black_text"
+            android:textSize="@dimen/_15sp" />
+
+        <ImageView
+            android:id="@+id/ic_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/_10dp"
+            android:src="@drawable/ic_more" />
+
+        <TextView
+            android:id="@+id/tv_bss_selected_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/ic_more"
+            android:padding="5dp"
+            android:text="122222222222"
+            android:textColor="@color/app_black_text"
+            android:textSize="@dimen/_15sp" />
+
+        <TextView
+            android:id="@+id/tv_bss_pre_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_bss_selected_num"
+            android:layout_toLeftOf="@id/ic_more"
+            android:padding="5dp"
+            android:text="预存话费"
+            android:textColor="@color/app_black_text"
+            android:textSize="@dimen/_15sp" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bss_use_white_card_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/_15dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/use_white_card"
+            android:textColor="@color/app_black_text"
+            android:textSize="@dimen/_15sp" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch_bss_white_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/switch_bg"
+            android:thumb="@null"
+            app:track="@null" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bss_edit_card_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/_15dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_15dp"
+            android:gravity="center_vertical"
+            android:text="@string/card_num"
+            android:textColor="@color/app_black_text"
+            android:textSize="@dimen/_15sp" />
+
+        <com.neusoft.woaccept.customview.ClearEditText
+            android:id="@+id/et_bss_input_num"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_15dp"
+            android:layout_marginStart="@dimen/_15dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_card_num_shape"
+            android:gravity="center_vertical"
+            android:hint="@string/input_card_num"
+            android:padding="@dimen/_10dp"
+            android:textColor="@color/app_black_text"
+            android:textSize="@dimen/_15sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/bt_bss_next_step"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:text="@string/next_step"
+            android:textSize="@dimen/_17sp" />
+    </RelativeLayout>
+
+
+</LinearLayout>

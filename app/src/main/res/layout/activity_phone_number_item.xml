@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/item_layout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".items.SelectNumItemView">
+
+    <TextView
+        android:id="@+id/item_tv_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_15dp"
+        android:layout_marginTop="@dimen/_15dp"
+        android:textColor="@color/app_black_text"
+        android:textSize="@dimen/_15sp"/>
+
+    <TextView
+        android:id="@+id/item_tv_pre_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_15dp"
+        android:layout_marginStart="@dimen/_15dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/pre_cost"
+        android:textColor="@color/app_black_text"
+        android:textSize="@dimen/_15sp"/>
+
+</LinearLayout>

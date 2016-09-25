@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.PaymentActivity">
+
+    <com.neusoft.woaccept.customview.MyTitleBar
+        android:id="@+id/my_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        app:mNavButtonIcon="@drawable/title_back"
+        app:mRightButtonIcon="@drawable/title_search_right"
+        app:mStatueBarIsTransparent="true"
+        app:mTitle="@string/payment_title"/>
+
+    <include
+        android:id="@+id/ll_bottom"
+        layout="@layout/activity_payment_bottom"/>
+
+    <ScrollView
+        android:id="@+id/sv_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/my_title_bar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_20dp"
+                android:background="@color/white"
+                android:hint="@string/payment_input_tip"
+                android:inputType="phone"
+                android:maxLength="13"
+                android:maxLines="1"
+                android:padding="@dimen/_20dp"
+                android:textSize="@dimen/_20sp"/>
+
+            <LinearLayout
+                android:id="@+id/ll_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <TextView
+                    android:id="@+id/txt_title"
+                    style="@style/match_wrap"
+                    android:paddingBottom="@dimen/_10dp"
+                    android:paddingLeft="@dimen/_20dp"
+                    android:paddingRight="@dimen/_20dp"
+                    android:paddingTop="@dimen/_10dp"
+                    android:text="@string/payment_user_info"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sp"/>
+
+                <include layout="@layout/horizontal_line"/>
+
+                <include layout="@layout/activity_payment_customer_info_item"/>
+
+                <include
+                    android:id="@+id/ll_customer_expense"
+                    layout="@layout/customer_expense"
+                    />
+
+            </LinearLayout>
+
+            <com.neusoft.woaccept.customview.PaymentSegment
+                android:id="@+id/payment_segment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:mColumnCount="3"
+                app:mIsItemEndEditText="true"
+                app:mItemBackground="@drawable/payment_money_selector"
+                app:mItemText="@array/money"
+                app:mItemTextColor="@color/text_select"
+                app:mItemTextSuffix="元"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20dp"
+                android:background="@color/white"
+                android:padding="@dimen/_20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/payment_type"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/payment_cash"
+                    android:textColor="@color/black"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

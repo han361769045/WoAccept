@@ -1,0 +1,93 @@
+<resources>
+    <string name="app_name">WoAccept</string>
+
+    <string name="no_net">网络连接失败</string>
+
+    <string name="empty_search">找不到您想要的结果</string>
+    <string name="empty_order">目前没有%1$s订单</string>
+    <string name="empty_review">暂时还没有评论</string>
+    <string name="empty_no_review">暂时还没有要评论的商品</string>
+    <string name="empty_logistics">暂时还没有物流信息</string>
+    <string name="next_step">下一步</string>
+
+    <!-- main -->
+
+    <string name="home">首页</string>
+    <string name="service">服务</string>
+    <string name="order">订单</string>
+    <string name="mine">我的</string>
+
+    <!--login-->
+    <string name="login_title">登录</string>
+    <string name="login_user_text">用户名</string>
+    <string name="login_pwd_text">密码</string>
+    <string name="login_sms_text">验证码</string>
+    <string name="login_sms">获取验证码</string>
+    <string name="login_user_fail">请输入有效的账号</string>
+    <string name="login_pwd_fail">请输入有效的密码</string>
+    <string name="login_sms_fail">请输入有效的验证码</string>
+    <string name="login_pwd_short">密码长度太短</string>
+    <string name="login_sms_tip">验证码已发送到您的手机</string>
+
+
+    <!-- payment -->
+    <string name="payment_title">缴费</string>
+    <string name="payment_input_tip">请输入充值号码</string>
+    <string name="payment_submit">提交</string>
+    <string name="payment_money">应收：￥</string>
+    <string name="payment_zero">0.00</string>
+    <string name="payment_ten">10元</string>
+    <string name="payment_twenty">20元</string>
+    <string name="payment_thirty">30元</string>
+    <string name="payment_fifty">50元</string>
+    <string name="payment_one_hundred">100元</string>
+    <string name="payment_two_hundred">200元</string>
+    <string name="payment_three_hundred">300元</string>
+    <string name="payment_five_hundred">500元</string>
+    <string name="payment_custom_money">自定义</string>
+    <string name="payment_type">缴费方式:</string>
+    <string name="payment_cash">现金</string>
+    <string name="payment_yuan">元</string>
+    <string name="payment_please_input_number">请输入手机号</string>
+    <!-- payment search result -->
+    <string name="payment_search_result_title">查询结果</string>
+    <string name="payment_search_result_pay">去缴费</string>
+    <string name="payment_user_info">客户信息</string>
+    <string name="payment_user_fee_info">用户费用信息</string>
+    <string name="payment_user_balance">用户余额:</string>
+    <string name="payment_user_fee">实时话费:</string>
+    <string name="payment_overdue_bill">欠费:</string>
+    <string name="payment_reputation">信誉度:</string>
+    <string name="payment_symbol_yuan">￥ %1$s</string>
+    <string name="payment_customer">客户姓名:</string>
+    <string name="payment_id_type">证件类型:</string>
+    <string name="payment_id">证件号码:</string>
+    <string name="payment_search_hint">查找手机号：:</string>
+
+
+    <!--选择网络-->
+    <string name="new_network">新装入网</string>
+    <string name="new_cbss">CBSS-移网</string>
+    <string name="new_bss">BSS-移网</string>
+    <string name="prelan">是否预配</string>
+    <string name="select_num">选号码</string>
+    <string name="use_white_card">使用白卡</string>
+    <string name="card_num">卡号</string>
+    <string name="input_card_num">请输入卡号</string>
+
+    <!--选择号码-->
+    <string name="search_by_num">ic 尾号搜索</string>
+    <string name="number">号码</string>
+    <string name="price">价格</string>
+    <string name="filter">筛选</string>
+    <string name="type_one_num">一类靓号</string>
+    <string name="type_two_num">二类靓号</string>
+    <string name="type_three_num">三类靓号</string>
+    <string name="type_four_num">四类靓号</string>
+    <string name="type_five_num">五类靓号</string>
+    <string name="type_six_num">六类靓号</string>
+    <string name="type_normal_num">普号</string>
+    <string name="min_cost">最低消费￥%1$s</string>
+    <string name="pre_cost">预存话费￥%1$s</string>
+
+</resources>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_root"
+    style="@style/match_wrap"
+    tools:context="activities.PaymentActivity">
+
+    <com.neusoft.woaccept.customview.MyTitleBar
+        android:id="@+id/my_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        app:mNavButtonIcon="@drawable/title_back"
+        app:mStatueBarIsTransparent="true"
+        app:mTitle="@string/payment_search_result_title"
+        />
+
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_title_bar"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        >
+
+        <TextView
+            android:id="@+id/txt_title"
+            style="@style/match_wrap"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/payment_user_info"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <include layout="@layout/horizontal_line"/>
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        style="@style/match_wrap"
+        android:layout_below="@id/ll_title"
+        android:background="@color/white"/>
+
+    <include
+        android:id="@+id/ll_customer_expense"
+        layout="@layout/customer_expense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_payment"
+        android:layout_below="@id/recycler_view"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/btn_payment"
+        style="@style/match_wrap"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="@string/payment_search_result_pay"
+        android:textColor="@color/text_select"/>
+</RelativeLayout>

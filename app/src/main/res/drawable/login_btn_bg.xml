@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false">
+        <layer-list>
+            <!-- 相当于padding -->
+            <item>
+                <shape xmlns:android="http://schemas.android.com/apk/res/android">
+                    <solid android:color="@color/tranColor"/>
+                    <corners android:radius="30dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item android:state_enabled="true">
+        <layer-list>
+            <item>
+                <shape xmlns:android="http://schemas.android.com/apk/res/android">
+                    <solid android:color="@color/colorPrimary"/>
+                    <corners android:radius="30dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>
+
