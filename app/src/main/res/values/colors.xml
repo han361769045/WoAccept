@@ -19,4 +19,7 @@
     <color name="tranColor">#30fd7a00</color>
     <color name="search_color">#ea5f0e</color>
 
+
+    <color name="pop_pu_bg">#14000000</color>
+
 </resources>

@@ -2,9 +2,11 @@ package com.neusoft.woaccept.rest;
 
 import com.neusoft.woaccept.model.CustomerInfo;
 import com.neusoft.woaccept.model.Msg;
+import com.neusoft.woaccept.model.PhoneNumber;
 import com.neusoft.woaccept.model.ReqBaseModel;
 import com.neusoft.woaccept.model.ReqLogin;
 import com.neusoft.woaccept.model.ReqPayment;
+import com.neusoft.woaccept.model.ReqSelectPhoneNumber;
 import com.neusoft.woaccept.model.ReqSendCode;
 import com.neusoft.woaccept.model.ResBaseModel;
 import com.neusoft.woaccept.model.ResLogin;
@@ -23,6 +25,8 @@ import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
+
+import java.util.List;
 
 /**
  * Created by Leo on 2016/3/2.
@@ -51,5 +55,8 @@ public interface MyRestClient extends RestClientRootUrl, RestClientSupport, Rest
 
     @Post(Constants.QRYPAY_FEE)
     ResPayment<CustomerInfo> qrypayfee(@Body ReqBaseModel<Msg<ReqPayment>> model);
+
+    @Post(Constants.SERVICE_IDQRY_ACTION)
+    ResBaseModel<List<PhoneNumber>> serviceidqry(@Body ReqBaseModel<Msg<ReqSelectPhoneNumber>> model);
 }
 

@@ -1,10 +1,12 @@
 package com.neusoft.woaccept.model;
 
+import java.io.Serializable;
+
 /**
  * Created by LeoLu on 2016/9/23.
  */
 
-public class PhoneNumber {
+public class PhoneNumber implements Serializable{
 
     private String advancePay;
     private String classId;

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/_5dp"
     android:background="@drawable/select_num_pop_item_shape"
     android:orientation="vertical"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".items.FilterPopupItemView"
-    android:padding="@dimen/_5dp">
+    android:padding="@dimen/_5dp"
+    tools:context=".items.FilterPopupItemView">
 
     <TextView
         android:id="@+id/txt_type_one"

@@ -11,15 +11,17 @@ import com.leo.lu.hfrefreshrecyclerview.CustomHFRefreshRecyclerView;
 import com.leo.lu.hfrefreshrecyclerview.HFRefreshRecyclerView;
 import com.leo.lu.hfrefreshrecyclerview.layoutmanagers.ScrollSmoothLineaerLayoutManager;
 import com.leo.lu.hfrefreshrecyclerview.ui.divideritemdecoration.HorizontalDividerItemDecoration;
+import com.leo.lu.hfrefreshrecyclerview.ui.divideritemdecoration.VerticalDividerItemDecoration;
 import com.leo.lu.hfrefreshrecyclerview.ui.header.RentalsSunHeaderView;
 import com.neusoft.woaccept.adapters.BaseUltimateRecyclerViewAdapter;
 import com.neusoft.woaccept.customview.MyTitleBar;
 import com.neusoft.woaccept.listener.OttoBus;
-import com.neusoft.woaccept.model.BaseModel;
+import com.neusoft.woaccept.model.ResBaseModel;
 import com.squareup.otto.Subscribe;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
@@ -47,6 +49,7 @@ public abstract class BaseUltimateRecyclerViewActivity<T> extends BaseActivity {
     @ViewById(resName = "empty_view")
     TextView empty_view;
 
+    @Bean
     OttoBus bus;
 
     int layoutId;
@@ -100,15 +103,21 @@ public abstract class BaseUltimateRecyclerViewActivity<T> extends BaseActivity {
         refreshingRentalsSun();
 
 //        ultimateRecyclerView.setItemViewCacheSize();
-        setItemDecoration(35, 35);
+        setHorizontalDividerItemDecoration(35, 35);
 
         ultimateRecyclerView.setAdapter(myAdapter);
     }
 
-    public void setItemDecoration(int leftMargin, int rightMargin) {
+    public void setHorizontalDividerItemDecoration(int leftMargin, int rightMargin) {
         paint.setStrokeWidth(1);
         paint.setColor(line_color);
         ultimateRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(this).margin(leftMargin, rightMargin).paint(paint).build());
+    }
+
+    public void setVerticalDividerItemDecoration(int leftMargin, int rightMargin) {
+        paint.setStrokeWidth(1);
+        paint.setColor(line_color);
+        ultimateRecyclerView.addItemDecoration(new VerticalDividerItemDecoration.Builder(this).margin(leftMargin, rightMargin).paint(paint).build());
     }
 
     /**
@@ -233,7 +242,7 @@ public abstract class BaseUltimateRecyclerViewActivity<T> extends BaseActivity {
     }
 
     @Subscribe
-    public void notifyUI(BaseModel bm) {
+    public void notifyUI(ResBaseModel bm) {
         if (isRefresh) {
             linearLayoutManager.scrollToPosition(0);
             ultimateRecyclerView.mPtrFrameLayout.refreshComplete();

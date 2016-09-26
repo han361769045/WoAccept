@@ -17,10 +17,11 @@ import com.leo.lu.hfrefreshrecyclerview.swipe.SwipeLayout;
 import com.neusoft.woaccept.items.BaseUltimateViewHolder;
 import com.neusoft.woaccept.items.ItemView;
 import com.neusoft.woaccept.listener.OttoBus;
-import com.neusoft.woaccept.model.BaseModelJson;
 import com.neusoft.woaccept.model.PagerResult;
+import com.neusoft.woaccept.model.ResBaseModel;
 import com.neusoft.woaccept.rest.MyErrorHandler;
 import com.neusoft.woaccept.rest.MyRestClient;
+import com.neusoft.woaccept.tools.AndroidTool;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Background;
@@ -80,19 +81,19 @@ public abstract class BaseUltimateRecyclerViewAdapter<T> extends HFRefreshViewAd
     public abstract void getMoreData(int pageIndex, int pageSize, boolean isRefresh, Object... objects);
 
     @UiThread
-    protected void afterGetMoreData(BaseModelJson<PagerResult<T>> result) {
+    protected void afterGetMoreData(ResBaseModel<PagerResult<T>> result) {
         if (result == null) {
-            result = new BaseModelJson<>();
-        } else if (!result.Successful) {
-//            AndroidTool.showToast(context, result.Error);
-        } else {
+            result = new ResBaseModel<>();
+        } else if ("0000".equals(result.getCode()) || result.getCode() == null) {
             if (isRefresh) {
                 clear();
             }
-            setTotal(result.Data.RowCount);
-            if (result.Data.ListData.size() > 0) {
-                insertAll(result.Data.ListData, getItems().size());
+            setTotal(result.getNumInfo().RowCount);
+            if (result.getNumInfo().ListData.size() > 0) {
+                insertAll(result.getNumInfo().ListData, getItems().size());
             }
+        } else {
+            AndroidTool.showToast(context, result.getDetail());
         }
         if (bus != null) {
             bus.post(result);

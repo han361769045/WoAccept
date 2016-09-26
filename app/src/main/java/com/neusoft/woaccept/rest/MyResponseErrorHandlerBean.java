@@ -33,6 +33,7 @@ public class MyResponseErrorHandlerBean implements ResponseErrorHandler {
 
     @Override
     public boolean hasError(ClientHttpResponse response) throws IOException {
+        dismissLoading();
         return hasError(getHttpStatusCode(response));
     }
 
@@ -43,7 +44,6 @@ public class MyResponseErrorHandlerBean implements ResponseErrorHandler {
 //            String str = new String(FileCopyUtils.copyToByteArray(stream1));
 //            Log.e(context.getPackageName(), str);
             statusCode = response.getStatusCode();
-            dismissLoading();
         } catch (IllegalArgumentException ex) {
             throw new UnknownHttpStatusCodeException(response.getRawStatusCode(),
                     response.getStatusText(), response.getHeaders(), getResponseBody(response), getCharset(response));
@@ -51,7 +51,7 @@ public class MyResponseErrorHandlerBean implements ResponseErrorHandler {
         return statusCode;
     }
 
-    @UiThread
+    @UiThread(delay = 300)
     void dismissLoading() {
         AndroidTool.dismissdialog(context);
     }

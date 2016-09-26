@@ -15,8 +15,14 @@ public class ReqBaseModel<T> {
     /***
      * 4G
      */
-    private String if34g = null;
-    private String is_wo_order_id = null;
+    private String if34g;
+    private String is_wo_order_id;
+
+    /**
+     * 查询号码
+     */
+    private String net_type_code;
+    private String applyevent;
 
     public String getAction() {
         return action;
@@ -72,5 +78,21 @@ public class ReqBaseModel<T> {
 
     public void setIs_wo_order_id(String is_wo_order_id) {
         this.is_wo_order_id = is_wo_order_id;
+    }
+
+    public String getNet_type_code() {
+        return net_type_code;
+    }
+
+    public void setNet_type_code(String net_type_code) {
+        this.net_type_code = net_type_code;
+    }
+
+    public String getApplyevent() {
+        return applyevent;
+    }
+
+    public void setApplyevent(String applyevent) {
+        this.applyevent = applyevent;
     }
 }

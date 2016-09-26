@@ -4,11 +4,14 @@ package com.neusoft.woaccept.model;
  * Created by LeoLu on 2016/9/22.
  */
 
-public class ResBaseModel {
+public class ResBaseModel<T> {
 
     private String code;
     private String detail;
     private String sessionID;
+
+    //查询电话号码返回的字段
+    private T numInfo;
 
     public String getCode() {
         return code;
@@ -34,4 +37,11 @@ public class ResBaseModel {
         this.sessionID = sessionID;
     }
 
+    public T getNumInfo() {
+        return numInfo;
+    }
+
+    public void setNumInfo(T numInfo) {
+        this.numInfo = numInfo;
+    }
 }
