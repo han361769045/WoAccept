@@ -93,7 +93,7 @@ public class PaymentSearchResultActivity extends BaseRecyclerViewActivity<Custom
         if (result == null) {
             AndroidTool.showToast(this, no_net);
             finish();
-        } else if ("0000".endsWith(result.getCode()) || result.getCode() == null) {
+        } else if ("0000".equals(result.getCode()) || result.getCode() == null) {
             responseBaseModel = result.clone();
             responseBaseModel.setCustInfo(null);
             myAdapter.insertData(result.getCustInfo(), 0);

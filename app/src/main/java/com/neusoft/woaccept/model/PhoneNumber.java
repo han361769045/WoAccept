@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by LeoLu on 2016/9/23.
  */
 
-public class PhoneNumber implements Serializable{
+public class PhoneNumber implements Serializable, Comparable<PhoneNumber> {
 
     private String advancePay;
     private String classId;
@@ -14,6 +14,7 @@ public class PhoneNumber implements Serializable{
     private String numId;
     private String numMemo;
     private String timeDurPro;
+
 
     public String getAdvancePay() {
         return advancePay;
@@ -63,4 +64,8 @@ public class PhoneNumber implements Serializable{
         this.timeDurPro = timeDurPro;
     }
 
+    @Override
+    public int compareTo(PhoneNumber o) {
+        return this.getNumId().compareTo(o.getNumId());
+    }
 }

@@ -10,22 +10,20 @@ import com.neusoft.woaccept.model.CustomerInfo;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EViewGroup;
+import org.androidannotations.annotations.ViewById;
 
 
 /**
  * Created by LeoLu on 2016/9/15.
  */
-@SuppressWarnings("unused")
 @EViewGroup(R.layout.activity_payment_customer_info_item)
 public class CustomerInfoItemView extends ItemView<CustomerInfo> {
 
+    @ViewById
     CheckBox checkBox;
 
-    TextView custName;
-
-    TextView certType;
-
-    TextView certCode;
+    @ViewById
+    TextView custName, certType, certCode;
 
     PaymentSearchResultActivity mPaymentSearchResultActivity;
 

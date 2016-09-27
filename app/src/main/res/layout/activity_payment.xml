@@ -19,10 +19,6 @@
         app:mStatueBarIsTransparent="true"
         app:mTitle="@string/payment_title"/>
 
-    <include
-        android:id="@+id/ll_bottom"
-        layout="@layout/activity_payment_bottom"/>
-
     <ScrollView
         android:id="@+id/sv_root"
         android:layout_width="match_parent"
@@ -49,37 +45,12 @@
                 android:padding="@dimen/_20dp"
                 android:textSize="@dimen/_20sp"/>
 
-            <LinearLayout
-                android:id="@+id/ll_root"
+            <ViewStub
+                android:id="@+id/vs_root"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_15dp"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:visibility="gone"
-                >
-
-                <TextView
-                    android:id="@+id/txt_title"
-                    style="@style/match_wrap"
-                    android:paddingBottom="@dimen/_10dp"
-                    android:paddingLeft="@dimen/_20dp"
-                    android:paddingRight="@dimen/_20dp"
-                    android:paddingTop="@dimen/_10dp"
-                    android:text="@string/payment_user_info"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_16sp"/>
-
-                <include layout="@layout/horizontal_line"/>
-
-                <include layout="@layout/activity_payment_customer_info_item"/>
-
-                <include
-                    android:id="@+id/ll_customer_expense"
-                    layout="@layout/customer_expense"
-                    />
-
-            </LinearLayout>
+                android:inflatedId="@+id/ll_root"
+                android:layout="@layout/search_payment_view_stub"/>
 
             <com.neusoft.woaccept.customview.PaymentSegment
                 android:id="@+id/payment_segment"
@@ -118,4 +89,8 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <include
+        android:id="@+id/ll_bottom"
+        layout="@layout/activity_payment_bottom"/>
 </RelativeLayout>

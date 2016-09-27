@@ -32,6 +32,8 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DrawableRes;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -85,10 +87,6 @@ public class SelectNumActivity extends BaseUltimateRecyclerViewActivity<PhoneNum
         queryPara = "6";
         type = "0";
         sort = "asc";
-    }
-
-    @AfterViews
-    void afterView() {
         model = new ReqBaseModel<>();
         Msg<ReqSelectPhoneNumber> msg = new Msg<>();
         ReqSelectPhoneNumber phoneNumber = new ReqSelectPhoneNumber();
@@ -116,7 +114,11 @@ public class SelectNumActivity extends BaseUltimateRecyclerViewActivity<PhoneNum
         list.add(queryParasEntity);
         phoneNumber.setQueryParas(list);
         msg.setMsg(phoneNumber);
+    }
 
+    @AfterViews
+    void afterView() {
+        rb_number.setSelected(true);
         myAdapter.setOnItemClickListener(new BaseUltimateRecyclerViewAdapter.OnItemClickListener<PhoneNumber>() {
             @Override
             public void onItemClick(RecyclerView.ViewHolder viewHolder, PhoneNumber obj, int position) {
@@ -147,10 +149,14 @@ public class SelectNumActivity extends BaseUltimateRecyclerViewActivity<PhoneNum
             sort = "desc";
             isSelected = false;
             rb_number.setSelected(false);
+            Collections.reverse(myAdapter.getItems());
+            myAdapter.notifyDataSetChanged();
         } else if (rb_number.isChecked()) {
             sort = "asc";
             isSelected = true;
             rb_number.setSelected(true);
+            Collections.sort(myAdapter.getItems());
+            myAdapter.notifyDataSetChanged();
         }
         if (mPopupWindow != null && mPopupWindow.isShowing())
             mPopupWindow.dismiss();
@@ -181,10 +187,19 @@ public class SelectNumActivity extends BaseUltimateRecyclerViewActivity<PhoneNum
             sort = "desc";
             rb_price.setSelected(false);
             isSelected = false;
+            Collections.sort(myAdapter.getItems(), new Comparator<PhoneNumber>() {
+                @Override
+                public int compare(PhoneNumber o1, PhoneNumber o2) {
+                    return o1.getAdvancePay().compareTo(o2.getAdvancePay());
+                }
+            });
+            myAdapter.notifyDataSetChanged();
         } else if (rb_price.isChecked()) {
             sort = "asc";
             rb_price.setSelected(true);
             isSelected = true;
+            Collections.reverse(myAdapter.getItems());
+            myAdapter.notifyDataSetChanged();
         }
         if (mPopupWindow != null && mPopupWindow.isShowing())
             mPopupWindow.dismiss();

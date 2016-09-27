@@ -4,6 +4,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -59,6 +60,9 @@ public class PaymentActivity extends BaseActivity implements PaymentSegment.OnIt
     PaymentSegment payment_segment;
 
     @ViewById
+    ViewStub vs_root;
+
+    @ViewById
     CheckBox checkBox;
 
     @ViewById
@@ -95,7 +99,6 @@ public class PaymentActivity extends BaseActivity implements PaymentSegment.OnIt
 
     @AfterViews
     void afterView() {
-        checkBox.setVisibility(View.GONE);
         ll_bottom.setAlpha(0.5f);
         payment_segment.setOnItemClickListener(this);
         my_title_bar.setRightButtonOnClickListener(new View.OnClickListener() {
@@ -107,10 +110,12 @@ public class PaymentActivity extends BaseActivity implements PaymentSegment.OnIt
         if (isSearch) {
             my_title_bar.hideRightButton();
             et_phone_number.setVisibility(View.GONE);
-            ll_root.setVisibility(View.VISIBLE);
+//            ll_root.setVisibility(View.VISIBLE);
+            vs_root.inflate();
+            checkBox.setVisibility(View.GONE);
             notifyUI(mResponseBaseModel);
         } else {
-            ll_root.setVisibility(View.GONE);
+//            ll_root.setVisibility(View.GONE);
             et_phone_number.setVisibility(View.VISIBLE);
         }
     }

@@ -51,4 +51,5 @@ public class SelectNumAdapter extends BaseUltimateRecyclerViewAdapter<PhoneNumbe
     public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int position) {
 
     }
+
 }
