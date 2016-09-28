@@ -10,6 +10,10 @@
     <string name="empty_logistics">暂时还没有物流信息</string>
     <string name="next_step">下一步</string>
 
+
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+
     <!-- main -->
 
     <string name="home">首页</string>
@@ -49,6 +53,9 @@
     <string name="payment_cash">现金</string>
     <string name="payment_yuan">元</string>
     <string name="payment_please_input_number">请输入手机号</string>
+    <string name="payment_ing">缴费中&#8230;</string>
+    <string name="dialog_title">提示</string>
+    <string name="dialog_message">是否确认缴费</string>
     <!-- payment search result -->
     <string name="payment_search_result_title">查询结果</string>
     <string name="payment_search_result_pay">去缴费</string>

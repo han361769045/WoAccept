@@ -6,7 +6,7 @@ package com.neusoft.woaccept.model;
 
 public class ReqPayment {
 
-    private String tradeTypeCode ; //业务编码，办理业务的代码标识（业务参数编码表）默认9999 String(4)
+    private String tradeTypeCode; //业务编码，办理业务的代码标识（业务参数编码表）默认9999 String(4)
     private String serviceClassCode; //电信业务类别（电信业务类别）默认0000  String(4)
     private String serialNumber;  //服务号码 String(40)
     private String fee; //缴费金额，单位分 String(15)
@@ -35,26 +35,13 @@ public class ReqPayment {
      * F00 发票兑奖
      */
     private String chargeParty;// String(3)  800
-    private String woOrderId; //受理系统订单编号 String(20)
     private PayFeeExtraParam para; //保留字段 String(20)
-    private String feeTime;
-
-    /**
-     * 2,3G
-     */
-    private String is_city_code = null;
-    private String in_service_kind = null;
-    private String is_service_id = null;
-    private String in_customer_id = null;
-    private String in_account_id = null;
-    private String in_user_id = null;
-    private String in_pay_fee = null;
-    private String in_pay_way = null;
-    private String is_dealer_id = null;
-    private String is_operate_id = null;
-    private String is_ip_address = null;
-    private String is_operate_date = null;
-    private String is_wo_order_id = null;
+    private String flag; //0：快速缴费(直接提交)  1：普通缴费(先查询再提交)
+    private String serviceKind; //服务类型(flag=1&&if34g=3必传)if34g为查询返回
+    private String customerId;//客户编号(flag=1&&if34g=3必传)
+    private String accountId;   //账户编号(flag=1&&if34g=3必传)
+    private String userId; //用户编号(flag=1&&if34g=3必传)
+    private String orderId; //沃受理系统订单编号 String(20)
 
     private String channelType;//渠道类型 String(7)
     private String operatorId;//操作员ID String(20)
@@ -187,13 +174,6 @@ public class ReqPayment {
         this.chargeParty = chargeParty;
     }
 
-    public String getWoOrderId() {
-        return woOrderId;
-    }
-
-    public void setWoOrderId(String woOrderId) {
-        this.woOrderId = woOrderId;
-    }
 
     public PayFeeExtraParam getPara() {
         return para;
@@ -203,123 +183,59 @@ public class ReqPayment {
         this.para = para;
     }
 
-    public String getFeeTime() {
-        return feeTime;
-    }
-
-    public void setFeeTime(String feeTime) {
-        this.feeTime = feeTime;
-    }
-
-    public String getIs_city_code() {
-        return is_city_code;
-    }
-
-    public void setIs_city_code(String is_city_code) {
-        this.is_city_code = is_city_code;
-    }
-
-    public String getIn_service_kind() {
-        return in_service_kind;
-    }
-
-    public void setIn_service_kind(String in_service_kind) {
-        this.in_service_kind = in_service_kind;
-    }
-
-    public String getIs_service_id() {
-        return is_service_id;
-    }
-
-    public void setIs_service_id(String is_service_id) {
-        this.is_service_id = is_service_id;
-    }
-
-    public String getIn_customer_id() {
-        return in_customer_id;
-    }
-
-    public void setIn_customer_id(String in_customer_id) {
-        this.in_customer_id = in_customer_id;
-    }
-
-    public String getIn_account_id() {
-        return in_account_id;
-    }
-
-    public void setIn_account_id(String in_account_id) {
-        this.in_account_id = in_account_id;
-    }
-
-    public String getIn_user_id() {
-        return in_user_id;
-    }
-
-    public void setIn_user_id(String in_user_id) {
-        this.in_user_id = in_user_id;
-    }
-
-    public String getIn_pay_fee() {
-        return in_pay_fee;
-    }
-
-    public void setIn_pay_fee(String in_pay_fee) {
-        this.in_pay_fee = in_pay_fee;
-    }
-
-    public String getIn_pay_way() {
-        return in_pay_way;
-    }
-
-    public void setIn_pay_way(String in_pay_way) {
-        this.in_pay_way = in_pay_way;
-    }
-
-    public String getIs_dealer_id() {
-        return is_dealer_id;
-    }
-
-    public void setIs_dealer_id(String is_dealer_id) {
-        this.is_dealer_id = is_dealer_id;
-    }
-
-    public String getIs_operate_id() {
-        return is_operate_id;
-    }
-
-    public void setIs_operate_id(String is_operate_id) {
-        this.is_operate_id = is_operate_id;
-    }
-
-    public String getIs_ip_address() {
-        return is_ip_address;
-    }
-
-    public void setIs_ip_address(String is_ip_address) {
-        this.is_ip_address = is_ip_address;
-    }
-
-    public String getIs_operate_date() {
-        return is_operate_date;
-    }
-
-    public void setIs_operate_date(String is_operate_date) {
-        this.is_operate_date = is_operate_date;
-    }
-
-    public String getIs_wo_order_id() {
-        return is_wo_order_id;
-    }
-
-    public void setIs_wo_order_id(String is_wo_order_id) {
-        this.is_wo_order_id = is_wo_order_id;
-    }
-
     public String getInfoList() {
         return infoList;
     }
 
     public void setInfoList(String infoList) {
         this.infoList = infoList;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
+
+    public String getServiceKind() {
+        return serviceKind;
+    }
+
+    public void setServiceKind(String serviceKind) {
+        this.serviceKind = serviceKind;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 }

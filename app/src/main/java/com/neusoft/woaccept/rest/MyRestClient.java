@@ -47,12 +47,6 @@ public interface MyRestClient extends RestClientRootUrl, RestClientSupport, Rest
     @Post(Constants.PAY_FEE_NO_SEARCH)
     ResBaseModel payfeenosearch(@Body ReqBaseModel<Msg<ReqPayment>> model);
 
-    @Post(Constants.PAYFEENEW)
-    ResBaseModel payfeenew(@Body ReqBaseModel<Msg<ReqPayment>> model);
-
-    @Post(Constants.PAY_FEE)
-    ResBaseModel payfee(@Body ReqBaseModel<Msg<ReqPayment>> model);
-
     @Post(Constants.QRYPAY_FEE)
     ResPayment<CustomerInfo> qrypayfee(@Body ReqBaseModel<Msg<ReqPayment>> model);
 

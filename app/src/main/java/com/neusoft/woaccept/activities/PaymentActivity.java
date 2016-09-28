@@ -1,5 +1,7 @@
 package com.neusoft.woaccept.activities;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -54,7 +56,7 @@ public class PaymentActivity extends BaseActivity implements PaymentSegment.OnIt
     EditText et_phone_number;
 
     @ViewById
-    TextView txt_money, txt_money_label, custName, certType, certCode, txt_balance, txt_fee, txt_bill, txt_reputation;
+    TextView txt_money, txt_money_label, custName, certType, certCode, txt_balance, txt_fee, txt_bill, txt_reputation, txt_submit;
 
     @ViewById
     PaymentSegment payment_segment;
@@ -80,8 +82,6 @@ public class PaymentActivity extends BaseActivity implements PaymentSegment.OnIt
     @Bean
     MyErrorHandler myErrorHandler;
 
-    String selectValue;
-
     // isNum:是否输入有效数字  isPhoneNum是否输入电话
     @Extra
     boolean isNum, isPhoneNum, isSearch;
@@ -91,6 +91,12 @@ public class PaymentActivity extends BaseActivity implements PaymentSegment.OnIt
 
     @Extra
     CustomerInfo mCustomerInfo;
+
+    AlertDialog.Builder alertDialog, adb;
+
+    AlertDialog ad;
+
+    String selectValue;
 
     @AfterInject
     void afterInject() {
@@ -132,7 +138,6 @@ public class PaymentActivity extends BaseActivity implements PaymentSegment.OnIt
         txt_fee.setText(String.format(payment_symbol_yuan, AndroidTool.convertDouble(responseBaseModel.getRealTimeFee())));
         txt_bill.setText(String.format(payment_symbol_yuan, AndroidTool.convertDouble(responseBaseModel.getFee())));
         txt_reputation.setText(TextUtils.isEmpty(responseBaseModel.getCreditFee()) ? "0" : responseBaseModel.getCreditFee());
-
         custName.setText(mCustomerInfo.getCustName());
         certType.setText(mCustomerInfo.getCertType());
         certCode.setText(mCustomerInfo.getCertCode());
@@ -141,23 +146,31 @@ public class PaymentActivity extends BaseActivity implements PaymentSegment.OnIt
     @Click
     void txt_submit() {
         if ((isPhoneNum || isSearch) && isNum) {
-            submit();
+
+            if (adb == null) {
+                adb = new AlertDialog.Builder(this);
+                adb.setTitle(R.string.dialog_title).setMessage(R.string.dialog_message)
+                        .setNegativeButton(R.string.cancel, null)
+                        .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                submit();
+                            }
+                        });
+                ad = adb.create();
+                ad.setCanceledOnTouchOutside(false);
+            }
+            adb.show();
         }
     }
 
     private void submit() {
-        if (isSearch) {
-            if ("4".equals(mResponseBaseModel.getIf34g())) {
-                reqNewPayFee();
-            } else {
-                reqPayFee();
-            }
-        } else {
-            noSearchPayFee();
-        }
+        txt_submit.setEnabled(false);
+        txt_submit.setText(R.string.payment_ing);
+        pay(isSearch ? "1" : "0");
     }
 
-    private void noSearchPayFee() {
+    private void pay(String flag) {
         ReqPayment reqPayment = new ReqPayment();
         ResLogin loginData = app.getResLogin();
         reqPayment.setProvince(loginData.getProvince());
@@ -166,13 +179,20 @@ public class PaymentActivity extends BaseActivity implements PaymentSegment.OnIt
         reqPayment.setOperatorId(loginData.getOperatorId_cb());
         reqPayment.setChannelId(loginData.getChannelId());
         reqPayment.setChannelType(loginData.getChannelType());
-        reqPayment.setSerialNumber(et_phone_number.getText().toString());
+        reqPayment.setSerialNumber(isSearch ? phoneNumber : et_phone_number.getText().toString().trim());
         reqPayment.setChargeParty("800");
         reqPayment.setServiceClassCode("0000");
         reqPayment.setTradeTypeCode("9999");
+        reqPayment.setFlag(flag);
         int money = (int) ((Double.valueOf(txt_money.getText().toString()) * 100));
-        reqPayment.setWoOrderId(AndroidTool.getRandomOrdersId(loginData.getCity()));
+        reqPayment.setOrderId(AndroidTool.getRandomOrdersId(loginData.getCity()));
         reqPayment.setFee(String.valueOf(money));
+        if ("1".equals(flag) && !"4".equals(mResponseBaseModel.getIf34g())) {
+            reqPayment.setServiceKind(mCustomerInfo.getServiceKind());
+            reqPayment.setCustomerId(mCustomerInfo.getCustomerId());
+            reqPayment.setAccountId(mCustomerInfo.getAccountId());
+            reqPayment.setUserId(mCustomerInfo.getUserId());
+        }
         ReqBaseModel<Msg<ReqPayment>> reqBM = new ReqBaseModel<>();
         Msg<ReqPayment> bmj = new Msg<>();
         bmj.setMsg(reqPayment);
@@ -182,74 +202,9 @@ public class PaymentActivity extends BaseActivity implements PaymentSegment.OnIt
         payFee(Constants.PAY_FEE_NO_SEARCH, reqBM);
     }
 
-
-    // 4G缴费请求
-    private void reqNewPayFee() {
-        ReqPayment reqPayment = new ReqPayment();
-        ResLogin loginData = app.getResLogin();
-        reqPayment.setProvince(loginData.getProvince());
-        reqPayment.setCity(loginData.getCity());
-        reqPayment.setDistrict(loginData.getDistrict());
-        reqPayment.setChargeParty("800");
-        reqPayment.setOperatorId(loginData.getOperatorId_cb());
-        reqPayment.setChannelId(loginData.getChannelId());
-        reqPayment.setChannelType(loginData.getChannelType());
-        reqPayment.setSerialNumber(phoneNumber);
-        int money = (int) ((Double.valueOf(txt_money.getText().toString()) * 100));
-        reqPayment.setFee(String.valueOf(money));
-        reqPayment.setFeeTime(AndroidTool.getOccupyTime());
-        ReqBaseModel<Msg<ReqPayment>> reqBM = new ReqBaseModel<>();
-        Msg<ReqPayment> bmj = new Msg<>();
-        bmj.setMsg(reqPayment);
-        reqBM.setAction(Constants.PAYFEENEW);
-        reqBM.setSessionID(loginData.getSessionID());
-        reqBM.setReq(bmj);
-        reqBM.setIf34g("4");
-        reqBM.setIs_wo_order_id(AndroidTool.getRandomOrdersId(loginData.getCity()));
-        payFee(Constants.PAYFEENEW, reqBM);
-    }
-
-    // 3G缴费请求
-    private void reqPayFee() {
-        ReqPayment reqPayment = new ReqPayment();
-        ResLogin loginData = app.getResLogin();
-        reqPayment.setIn_service_kind(mCustomerInfo.getServiceKind());
-        reqPayment.setIs_service_id(phoneNumber);
-        reqPayment.setIn_customer_id(mCustomerInfo.getCustomerId());
-        reqPayment.setIn_account_id(mCustomerInfo.getAccountId());
-        reqPayment.setIn_user_id(mCustomerInfo.getUserId());
-        int money = (int) ((Double.valueOf(txt_money.getText().toString()) * 100));
-        reqPayment.setIn_pay_fee(String.valueOf(money));
-        reqPayment.setIn_pay_way("4");
-        reqPayment.setIs_dealer_id(loginData.getChannelId_bss());
-        reqPayment.setIs_operate_id(loginData.getOperatorId_bs());
-        reqPayment.setIs_ip_address("");
-        reqPayment.setIs_operate_date(AndroidTool.getOccupyTime());
-        reqPayment.setIs_wo_order_id(AndroidTool.getRandomOrdersId(loginData.getCity()));
-        reqPayment.setIs_city_code(loginData.getCity());
-        ReqBaseModel<Msg<ReqPayment>> reqBM = new ReqBaseModel<>();
-        Msg<ReqPayment> bmj = new Msg<>();
-        bmj.setMsg(reqPayment);
-        reqBM.setAction(Constants.PAY_FEE);
-        reqBM.setSessionID(loginData.getSessionID());
-        reqBM.setReq(bmj);
-        payFee(Constants.PAY_FEE, reqBM);
-    }
-
     @Background
     void payFee(String action, ReqBaseModel<Msg<ReqPayment>> reqBaseModel) {
-        switch (action) {
-            case Constants.PAY_FEE_NO_SEARCH:
-                afterPayFee(myRestClient.payfeenosearch(reqBaseModel));
-                break;
-
-            case Constants.PAY_FEE:
-                afterPayFee(myRestClient.payfee(reqBaseModel));
-                break;
-            case Constants.PAYFEENEW:
-                afterPayFee(myRestClient.payfeenew(reqBaseModel));
-                break;
-        }
+        afterPayFee(myRestClient.payfeenosearch(reqBaseModel));
     }
 
     @UiThread
