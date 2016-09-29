@@ -264,13 +264,12 @@ public class PaymentSegment extends LinearLayout {
         textView.setSingleLine();
         textView.setGravity(CENTER);
         textView.setClickable(true);
-        textView.setPadding(pxFromDp(15f), pxFromDp(15f), pxFromDp(15f), pxFromDp(15f));
         LayoutParams layoutParams = new LayoutParams(0, LayoutParams.MATCH_PARENT);
         layoutParams.weight = 1;
         if (mDrawableIds != 0) {
-            textView.setBackground(getResources().getDrawable(mDrawableIds));
-//            textView.setBackground(mDrawable);
+            textView.setBackgroundResource(mDrawableIds);
         }
+        textView.setPadding(pxFromDp(15f), pxFromDp(15f), pxFromDp(15f), pxFromDp(15f));
         if (mItemTextColor != null) {
             textView.setTextColor(mItemTextColor);
         }

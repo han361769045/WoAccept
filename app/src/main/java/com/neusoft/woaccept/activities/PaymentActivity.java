@@ -3,10 +3,8 @@ package com.neusoft.woaccept.activities;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewStub;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -56,16 +54,16 @@ public class PaymentActivity extends BaseActivity implements PaymentSegment.OnIt
     EditText et_phone_number;
 
     @ViewById
-    TextView txt_money, txt_money_label, custName, certType, certCode, txt_balance, txt_fee, txt_bill, txt_reputation, txt_submit;
+    TextView txt_money, txt_money_label, txt_submit;
 
     @ViewById
-    PaymentSegment payment_segment;
-
-    @ViewById
-    ViewStub vs_root;
+    TextView custName, certType, certCode, txt_balance, txt_fee, txt_bill, txt_reputation;
 
     @ViewById
     CheckBox checkBox;
+
+    @ViewById
+    PaymentSegment payment_segment;
 
     @ViewById
     LinearLayout ll_root, ll_bottom;
@@ -116,12 +114,11 @@ public class PaymentActivity extends BaseActivity implements PaymentSegment.OnIt
         if (isSearch) {
             my_title_bar.hideRightButton();
             et_phone_number.setVisibility(View.GONE);
-//            ll_root.setVisibility(View.VISIBLE);
-            vs_root.inflate();
+            ll_root.setVisibility(View.VISIBLE);
             checkBox.setVisibility(View.GONE);
             notifyUI(mResponseBaseModel);
         } else {
-//            ll_root.setVisibility(View.GONE);
+            ll_root.setVisibility(View.GONE);
             et_phone_number.setVisibility(View.VISIBLE);
         }
     }
@@ -137,7 +134,7 @@ public class PaymentActivity extends BaseActivity implements PaymentSegment.OnIt
         txt_balance.setText(String.format(payment_symbol_yuan, AndroidTool.convertDouble(responseBaseModel.getRealTimeBalance())));
         txt_fee.setText(String.format(payment_symbol_yuan, AndroidTool.convertDouble(responseBaseModel.getRealTimeFee())));
         txt_bill.setText(String.format(payment_symbol_yuan, AndroidTool.convertDouble(responseBaseModel.getFee())));
-        txt_reputation.setText(TextUtils.isEmpty(responseBaseModel.getCreditFee()) ? "0" : responseBaseModel.getCreditFee());
+        txt_reputation.setText(String.format(payment_symbol_yuan, AndroidTool.convertDouble(responseBaseModel.getCreditFee())));
         custName.setText(mCustomerInfo.getCustName());
         certType.setText(mCustomerInfo.getCertType());
         certCode.setText(mCustomerInfo.getCertCode());

@@ -227,16 +227,16 @@ public class MyTitleBar extends RelativeLayout {
 
     private void setDefaultLayoutParams() {
         if (mStatueBarIsTransparent) {
-            getLayoutParams().height = 210;
+            getLayoutParams().height = pxFromDp(70);
         } else {
-            getLayoutParams().height = 150;
+            getLayoutParams().height = pxFromDp(50);
         }
     }
 
     private void setStatueBarTransparent() {
         titleWrap = new RelativeLayout(getContext());
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        layoutParams.setMargins(0, 61, 0, 0);
+        layoutParams.setMargins(0, pxFromDp(20), 0, 0);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         super.addView(titleWrap, layoutParams);
     }
@@ -249,11 +249,12 @@ public class MyTitleBar extends RelativeLayout {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, r, t, b);
+        setDefaultLayoutParams();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        setDefaultLayoutParams();
+//        setDefaultLayoutParams();
 
     }
 

@@ -45,12 +45,9 @@
                 android:padding="@dimen/_20dp"
                 android:textSize="@dimen/_20sp"/>
 
-            <ViewStub
-                android:id="@+id/vs_root"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inflatedId="@+id/ll_root"
-                android:layout="@layout/search_payment_view_stub"/>
+            <include
+                layout="@layout/search_payment_view_stub"
+                android:visibility="gone"/>
 
             <com.neusoft.woaccept.customview.PaymentSegment
                 android:id="@+id/payment_segment"

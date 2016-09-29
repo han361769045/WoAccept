@@ -1,6 +1,5 @@
 package com.neusoft.woaccept.activities;
 
-import android.text.TextUtils;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -108,7 +107,7 @@ public class PaymentSearchResultActivity extends BaseRecyclerViewActivity<Custom
         txt_balance.setText(String.format(payment_symbol_yuan, AndroidTool.convertDouble(responseBaseModel.getRealTimeBalance())));
         txt_fee.setText(String.format(payment_symbol_yuan, AndroidTool.convertDouble(responseBaseModel.getRealTimeFee())));
         txt_bill.setText(String.format(payment_symbol_yuan, AndroidTool.convertDouble(responseBaseModel.getFee())));
-        txt_reputation.setText(TextUtils.isEmpty(responseBaseModel.getCreditFee()) ? "0" : responseBaseModel.getCreditFee());
+        txt_reputation.setText(String.format(payment_symbol_yuan, AndroidTool.convertDouble(responseBaseModel.getCreditFee())));
     }
 
     @Click
