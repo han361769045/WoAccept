@@ -172,12 +172,12 @@ public class PaymentSegment extends LinearLayout {
                             if ("".equals(source.toString())) {
                                 return null;
                             }
-                            String dValue = dest.toString();
+                            String dValue = dest.toString().trim();
                             String[] splitArray = dValue.split("\\.");
                             if (splitArray.length > 1) {
-                                String dotValue = splitArray[1].trim();
+                                String dotValue = splitArray[1];
                                 int diff = dotValue.length() + 1 - 2;
-                                if (diff > 0) {
+                                if (diff > 0 && (dstart > dValue.indexOf('.') || dValue.length() > 9)) {
                                     return source.subSequence(start, end - diff);
                                 }
                             }

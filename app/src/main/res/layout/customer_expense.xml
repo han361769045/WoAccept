@@ -3,25 +3,25 @@
               style="@style/match_wrap"
               android:background="@color/white"
               android:orientation="vertical"
-              android:paddingBottom="10dp"
-              android:paddingLeft="20dp"
-              android:paddingRight="20dp"
-              android:paddingTop="10dp">
+              android:paddingBottom="@dimen/_10dp"
+              android:paddingStart="@dimen/_20dp"
+              android:paddingTop="@dimen/_10dp">
 
     <TextView
         style="@style/match_wrap"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="@dimen/_10dp"
         android:text="@string/payment_user_fee_info"
-        android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textColor="@color/app_black_text"
+        android:textSize="@dimen/_16sp"
         android:textStyle="bold"/>
 
     <include layout="@layout/horizontal_line"/>
 
     <RelativeLayout
         style="@style/match_wrap"
-        android:paddingBottom="5dp"
-        android:paddingTop="10dp">
+        android:paddingBottom="@dimen/_5dp"
+        android:paddingEnd="@dimen/_20dp"
+        android:paddingTop="@dimen/_10dp">
 
         <TextView
             style="@style/payment_text_left"
@@ -35,8 +35,9 @@
 
     <RelativeLayout
         style="@style/match_wrap"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp">
+        android:paddingBottom="@dimen/_5dp"
+        android:paddingEnd="@dimen/_20dp"
+        android:paddingTop="@dimen/_5dp">
 
         <TextView
             style="@style/payment_text_left"
@@ -50,8 +51,9 @@
 
     <RelativeLayout
         style="@style/match_wrap"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp">
+        android:paddingBottom="@dimen/_5dp"
+        android:paddingEnd="@dimen/_20dp"
+        android:paddingTop="@dimen/_5dp">
 
         <TextView
             style="@style/payment_text_left"
@@ -66,8 +68,9 @@
 
     <RelativeLayout
         style="@style/match_wrap"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp">
+        android:paddingBottom="@dimen/_5dp"
+        android:paddingEnd="@dimen/_20dp"
+        android:paddingTop="@dimen/_5dp">
 
         <TextView
             style="@style/payment_text_left"

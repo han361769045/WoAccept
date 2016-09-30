@@ -112,6 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:background="@drawable/switch_bg"
+            android:checked="true"
             android:thumb="@null"
             app:track="@null"/>
     </RelativeLayout>
@@ -150,14 +151,20 @@
             android:textSize="@dimen/_15sp"/>
     </LinearLayout>
 
-
-    <Button
-        android:id="@+id/bt_cbss_next_step"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/white"
-        android:text="@string/next_step"
-        android:textSize="@dimen/_17sp"/>
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/bt_cbss_next_step"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/next_step"
+            android:enabled="false"
+            android:text="@string/next_step"
+            android:textColor="@color/next_step"
+            android:textSize="@dimen/_17sp"/>
+    </LinearLayout>
 
 </LinearLayout>

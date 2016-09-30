@@ -14,8 +14,8 @@
         app:mCustomViewGravity="mLeft"
         app:mCustomViewMarginLeft="@dimen/_15dp"
         app:mCustomViewMarginRight="@dimen/_50dp"
-        app:mRightText="取消"
-        app:mRightTextColor="@color/black"
+        app:mRightText="@string/cancel"
+        app:mRightTextColor="@color/app_black_text"
         app:mRightTextMarginRight="@dimen/_15dp"
         app:mStatueBarIsTransparent="true"
         />

@@ -33,5 +33,10 @@
         <item>@string/new_bss</item>
     </string-array>
 
+    <string-array name="entry_customer_title">
+        <item>@string/customer_information_entry</item>
+        <item>@string/extend_information</item>
+    </string-array>
+
 
 </resources>

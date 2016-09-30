@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/_15dp"
@@ -16,10 +17,15 @@
         android:paddingRight="@dimen/_20dp"
         android:paddingTop="@dimen/_10dp"
         android:text="@string/payment_user_info"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_16sp"/>
+        android:textColor="@color/app_black_text"
+        android:textSize="@dimen/_16sp"
+        android:textStyle="bold"/>
 
-    <include layout="@layout/horizontal_line"/>
+    <include
+        layout="@layout/horizontal_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="@dimen/_20dp"/>
 
     <include layout="@layout/activity_payment_customer_info_item"/>
 

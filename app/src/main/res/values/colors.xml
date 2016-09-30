@@ -11,6 +11,15 @@
     <color name="app_black_text">#333333</color><!-- app应用统一的黑色字体 -->
     <color name="app_bg">#f6f6f6</color><!-- app应用统一的页面背景灰色 -->
 
+    <color name="payment_bottom">#b2b2b2</color>
+
+
+    <!--录入客户信息颜色-->
+    <color name="entryBackground">#EBEBEB</color>
+    <color name="nextBackground">#FAFAFB</color>
+    <color name="readInformationBackground">#AAAAAA</color>
+    <color name="colorEnterInformation">#333333</color>
+
     <color name="main_tab_color">#fafafa</color>
     <color name="line_color">#e1e1e1</color>
     <color name="home_bottom">#777777</color>
@@ -21,5 +30,7 @@
 
 
     <color name="pop_pu_bg">#14000000</color>
+
+    <color name="white_tran">#89ffffff</color>
 
 </resources>

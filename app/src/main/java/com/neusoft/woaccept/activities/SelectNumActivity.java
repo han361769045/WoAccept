@@ -124,7 +124,7 @@ public class SelectNumActivity extends BaseUltimateRecyclerViewActivity<PhoneNum
             public void onItemClick(RecyclerView.ViewHolder viewHolder, PhoneNumber obj, int position) {
                 Intent intent = new Intent();
                 intent.putExtra("phoneNumber", obj);
-                setResult(1001, intent);
+                setResult(RESULT_OK, intent);
                 finish();
             }
 

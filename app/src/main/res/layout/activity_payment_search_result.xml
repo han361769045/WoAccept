@@ -24,18 +24,17 @@
         android:layout_below="@id/my_title_bar"
         android:background="@color/white"
         android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:paddingLeft="@dimen/_20dp"
         >
 
         <TextView
             android:id="@+id/txt_title"
             style="@style/match_wrap"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
+            android:paddingBottom="@dimen/_10dp"
+            android:paddingTop="@dimen/_10dp"
             android:text="@string/payment_user_info"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textColor="@color/app_black_text"
+            android:textSize="@dimen/_16sp"
             android:textStyle="bold"/>
 
         <include layout="@layout/horizontal_line"/>
@@ -55,14 +54,15 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_payment"
         android:layout_below="@id/recycler_view"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="@dimen/_15dp"/>
 
     <TextView
         android:id="@+id/btn_payment"
         style="@style/match_wrap"
         android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:padding="20dp"
+        android:padding="@dimen/_18dp"
         android:text="@string/payment_search_result_pay"
-        android:textColor="@color/text_select"/>
+        android:textColor="@color/payment_text_select"
+        android:textSize="@dimen/_17sp"/>
 </RelativeLayout>

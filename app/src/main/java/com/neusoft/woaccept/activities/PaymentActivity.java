@@ -3,6 +3,9 @@ package com.neusoft.woaccept.activities;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -66,7 +69,7 @@ public class PaymentActivity extends BaseActivity implements PaymentSegment.OnIt
     PaymentSegment payment_segment;
 
     @ViewById
-    LinearLayout ll_root, ll_bottom;
+    LinearLayout ll_root;
 
     @StringRes
     String payment_symbol_yuan;
@@ -103,7 +106,10 @@ public class PaymentActivity extends BaseActivity implements PaymentSegment.OnIt
 
     @AfterViews
     void afterView() {
-        ll_bottom.setAlpha(0.5f);
+        txt_submit.setAlpha(0.5f);
+        SpannableString spannableString = new SpannableString(getString(R.string.payment_zero));
+        spannableString.setSpan(new RelativeSizeSpan(1.4f), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        txt_money.setText(spannableString);
         payment_segment.setOnItemClickListener(this);
         my_title_bar.setRightButtonOnClickListener(new View.OnClickListener() {
             @Override
@@ -227,11 +233,17 @@ public class PaymentActivity extends BaseActivity implements PaymentSegment.OnIt
         this.isNum = isNum;
         this.selectValue = selectValue;
         if ((isPhoneNum || isSearch) && isNum) {
-            ll_bottom.setAlpha(1.0f);
-            txt_money.setText(AndroidTool.toDouble(Double.valueOf(selectValue)));
+            txt_submit.setAlpha(1.0f);
+            String temp = AndroidTool.toDouble(Double.valueOf(selectValue));
+            int end = temp.indexOf('.');
+            SpannableString spannableString = new SpannableString(temp);
+            spannableString.setSpan(new RelativeSizeSpan(1.4f), 0, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            txt_money.setText(spannableString);
         } else {
-            ll_bottom.setAlpha(0.5f);
-            txt_money.setText(R.string.payment_zero);
+            txt_submit.setAlpha(0.5f);
+            SpannableString spannableString = new SpannableString(getString(R.string.payment_zero));
+            spannableString.setSpan(new RelativeSizeSpan(1.4f), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            txt_money.setText(spannableString);
         }
         txt_money.setSelected((isPhoneNum || isSearch) && isNum);
         txt_money_label.setSelected((isPhoneNum || isSearch) && isNum);

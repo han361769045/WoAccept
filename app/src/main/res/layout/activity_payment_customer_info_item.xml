@@ -4,10 +4,9 @@
               android:layout_height="wrap_content"
               android:background="@color/white"
               android:orientation="horizontal"
-              android:paddingBottom="10dp"
-              android:paddingLeft="20dp"
-              android:paddingRight="20dp"
-              android:paddingTop="10dp">
+              android:paddingBottom="@dimen/_10dp"
+              android:paddingStart="@dimen/_20dp"
+              android:paddingTop="@dimen/_10dp">
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -24,12 +23,13 @@
         android:layout_height="wrap_content"
         android:layout_weight="8"
         android:orientation="vertical"
+        android:paddingEnd="@dimen/_20dp"
         >
 
         <RelativeLayout
             style="@style/match_wrap"
-            android:paddingBottom="5dp"
-            android:paddingTop="10dp">
+            android:paddingBottom="@dimen/_5dp"
+            android:paddingTop="@dimen/_5dp">
 
             <TextView
                 style="@style/payment_text_left"
@@ -42,8 +42,8 @@
 
         <RelativeLayout
             style="@style/match_wrap"
-            android:paddingBottom="5dp"
-            android:paddingTop="10dp">
+            android:paddingBottom="@dimen/_5dp"
+            android:paddingTop="@dimen/_5dp">
 
             <TextView
                 style="@style/payment_text_left"
@@ -56,8 +56,8 @@
 
         <RelativeLayout
             style="@style/match_wrap"
-            android:paddingBottom="5dp"
-            android:paddingTop="10dp">
+            android:paddingBottom="@dimen/_5dp"
+            android:paddingTop="@dimen/_5dp">
 
             <TextView
                 style="@style/payment_text_left"

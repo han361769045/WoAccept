@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/app_bg"
-    android:drawableStart="@drawable/title_search"
     android:drawablePadding="15dp"
+    android:drawableStart="@drawable/title_search"
     android:ellipsize="start"
     android:gravity="center_vertical"
     android:hint="@string/payment_please_input_number"
     android:imeOptions="actionSearch"
     android:inputType="phone"
     android:maxLines="1"
-    android:padding="10dp"
-    android:textSize="13sp"/>
+    android:padding="@dimen/_10dp"
+    android:textColorHint="@color/payment_bottom"
+    android:textSize="@dimen/_14sp"/>
 
