@@ -32,6 +32,8 @@ public class EntryCustomerInfoActivity extends BaseActivity {
     void afterView() {
         view_pager.setNoScroll(true);
         mBaseFragmentStatePagerAdapter.setFragment(fragments);
+
+
         view_pager.setAdapter(mBaseFragmentStatePagerAdapter);
     }
 
