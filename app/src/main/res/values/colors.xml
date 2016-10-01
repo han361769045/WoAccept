@@ -32,5 +32,8 @@
     <color name="pop_pu_bg">#14000000</color>
 
     <color name="white_tran">#89ffffff</color>
+    <color name="half_transparent">#e0000000</color>
+    <color name="cancleBackground">#FFB53D</color>
+
 
 </resources>

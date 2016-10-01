@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_read_id_card"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/_20dp"
+    android:visibility="visible">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:background="@android:color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/document_type"
+            android:textColor="@color/colorEnterInformation"
+            android:textSize="@dimen/_14sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:drawableEnd="@drawable/right_arrow"
+            android:drawablePadding="@dimen/_15dp"
+            android:text="@string/idcard_18"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/id_card_left"
+            android:text="@string/custom_name"
+            />
+
+        <TextView
+            android:id="@+id/customer_name"
+            style="@style/id_card_right"
+            android:enabled="false"
+            android:textColor="@color/readInformationBackground"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/id_card_left"
+            android:text="@string/certificate_number"
+            />
+
+        <TextView
+            android:id="@+id/certificate_number"
+            style="@style/id_card_right"
+            android:enabled="false"
+            android:textColor="@color/readInformationBackground"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/id_card_left"
+            android:text="@string/valid"/>
+
+        <TextView
+            android:id="@+id/certificate_validity"
+            style="@style/id_card_right"
+            android:enabled="false"
+            android:textColor="@color/readInformationBackground"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_5dp"
+        android:layout_marginTop="@dimen/_5dp"
+        android:background="@android:color/white">
+
+        <TextView
+            style="@style/id_card_left"
+            android:text="@string/Id_address"/>
+
+        <TextView
+            android:id="@+id/certificate_address"
+            style="@style/id_card_right"
+            android:enabled="false"
+            android:textColor="@color/readInformationBackground"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            style="@style/id_card_left"
+            android:text="@string/communication_address"/>
+
+        <EditText
+            android:id="@+id/communication_address"
+            style="@style/id_card_right"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLines="2"
+            android:nextFocusDown="@+id/phone_number"
+            android:textColor="@color/colorEnterInformation"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:background="@android:color/white">
+
+        <TextView
+            style="@style/id_card_left"
+            android:text="@string/contact_number"/>
+
+        <EditText
+            android:id="@+id/phone_number"
+            style="@style/id_card_right"
+            android:imeOptions="actionNext"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:textColor="@color/colorEnterInformation"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/id_card_left"
+            android:text="@string/contacter"/>
+
+        <EditText
+            android:id="@+id/contacter"
+            style="@style/id_card_right"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/colorEnterInformation"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/id_card_left"
+            android:text="@string/contacter_phone"/>
+
+        <EditText
+            android:id="@+id/input_phonenumber"
+            style="@style/id_card_right"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:textColor="@color/colorEnterInformation"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/development_channel_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingBottom="@dimen/_8dp"
+        android:paddingTop="@dimen/_8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/develop_channel"
+            android:textColor="@color/colorEnterInformation"
+            android:textSize="@dimen/_14sp"/>
+
+        <TextView
+            android:id="@+id/tv_develop_channel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:drawableEnd="@drawable/right_arrow"
+            android:drawablePadding="@dimen/_15dp"
+            android:paddingBottom="@dimen/_10dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/development_person_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingBottom="@dimen/_8dp"
+        android:paddingTop="@dimen/_8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/develop_person"
+            android:textColor="@color/colorEnterInformation"
+            android:textSize="@dimen/_14sp"/>
+
+        <TextView
+            android:id="@+id/tv_develop_person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:drawableEnd="@drawable/right_arrow"
+            android:drawablePadding="@dimen/_15dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/id_card_left"
+            android:gravity="top"
+            android:text="@string/note"/>
+
+        <EditText
+            android:id="@+id/note"
+            style="@style/id_card_right"
+            android:gravity="top|start"
+            android:imeOptions="actionDone"
+            android:lines="4"
+            android:textColor="@color/colorEnterInformation"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:background="@android:color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/group_customer"
+            android:textColor="@color/colorEnterInformation"
+            android:textSize="@dimen/_14sp"/>
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/select_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/switch_bg"
+            android:thumb="@null"
+            android:track="@null"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/query_information_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_1dp"
+        android:background="@android:color/white"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/groupinformation_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_15dp"
+            android:text="@string/group_information_query"
+            android:textColor="@color/colorEnterInformation"
+            android:textSize="@dimen/_14sp"/>
+
+        <TextView
+            android:id="@+id/group_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:drawableEnd="@drawable/right_arrow"
+            android:drawablePadding="@dimen/_15dp"
+            />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/next_step_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/nextBackground"
+        android:text="@string/next_step"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_17sp"/>
+
+</LinearLayout>

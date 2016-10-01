@@ -6,7 +6,7 @@ import com.neusoft.woaccept.R;
 import com.neusoft.woaccept.adapters.BaseFragmentStatePagerAdapter;
 import com.neusoft.woaccept.customview.NoScrollViewPager;
 import com.neusoft.woaccept.fragments.BssFragment_;
-import com.neusoft.woaccept.fragments.CbssFragment_;
+import com.neusoft.woaccept.fragments.ReadIdCardFragment_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -26,14 +26,12 @@ public class EntryCustomerInfoActivity extends BaseActivity {
     @Bean
     BaseFragmentStatePagerAdapter mBaseFragmentStatePagerAdapter;
 
-    Fragment[] fragments = {CbssFragment_.builder().build(), BssFragment_.builder().build()};
+    Fragment[] fragments = {ReadIdCardFragment_.builder().build(), BssFragment_.builder().build()};
 
     @AfterViews
     void afterView() {
         view_pager.setNoScroll(true);
         mBaseFragmentStatePagerAdapter.setFragment(fragments);
-
-
         view_pager.setAdapter(mBaseFragmentStatePagerAdapter);
     }
 

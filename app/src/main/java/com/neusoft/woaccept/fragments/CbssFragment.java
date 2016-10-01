@@ -9,10 +9,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.neusoft.woaccept.R;
+import com.neusoft.woaccept.activities.EntryCustomerInfoActivity_;
 import com.neusoft.woaccept.activities.SelectNumActivity_;
 import com.neusoft.woaccept.customview.ClearEditText;
 import com.neusoft.woaccept.model.PhoneNumber;
-import com.neusoft.woaccept.tools.AndroidTool;
 
 import org.androidannotations.annotations.AfterTextChange;
 import org.androidannotations.annotations.CheckedChange;
@@ -85,7 +85,7 @@ public class CbssFragment extends BaseFragment {
 
     @Click
     void bt_cbss_next_step() {
-        AndroidTool.showToast(this, "ssssssssssssss");
+        EntryCustomerInfoActivity_.intent(this).start();
     }
 
 }
