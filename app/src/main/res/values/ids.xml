@@ -8,6 +8,9 @@
     <item name="dgv_wobble_tag" type="id"/>
     <item name="option_select_tag" type="id"/>
     <item name="day_view_adapter_class" type="id"/>
+
+
+    <item name="real_content" type="id"/>
 </resources>
 
 

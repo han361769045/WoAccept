@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
-import android.widget.TabWidget;
 import android.widget.TextView;
 
 import com.neusoft.woaccept.R;
@@ -26,9 +25,6 @@ public class MainActivity extends BaseActivity {
     @ViewById
     FragmentTabHost tabHost;
 
-    @ViewById(android.R.id.tabs)
-    TabWidget tabWidget;
-
     @StringArrayRes
     String[] tabTag, tabTitle;
 
@@ -45,7 +41,7 @@ public class MainActivity extends BaseActivity {
     }
 
     protected void initTab() {
-        tabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
+        tabHost.setup(this, getSupportFragmentManager(), R.id.real_content);
         for (int i = 0; i < tabTag.length; i++) {
             Bundle bundle = new Bundle();
             TabHost.TabSpec tabSpec = tabHost.newTabSpec(tabTag[i]);

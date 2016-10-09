@@ -2,6 +2,7 @@ package com.neusoft.woaccept.customview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
  * Created by LeoLu on 2016/9/22.
  */
 
-public class FragmentTabHost  extends TabHost
+public class FragmentTabHost extends TabHost
         implements TabHost.OnTabChangeListener {
     private final ArrayList<TabInfo> mTabs = new ArrayList<TabInfo>();
     private FrameLayout mRealTabContent;
@@ -113,10 +114,9 @@ public class FragmentTabHost  extends TabHost
 
     private void initFragmentTabHost(Context context, AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs,
-                new int[] { android.R.attr.inflatedId }, 0, 0);
+                new int[]{android.R.attr.inflatedId}, 0, 0);
         mContainerId = a.getResourceId(0, 0);
         a.recycle();
-
         super.setOnTabChangedListener(this);
     }
 
@@ -125,18 +125,11 @@ public class FragmentTabHost  extends TabHost
         // we will construct a standard one here.
         if (findViewById(android.R.id.tabs) == null) {
             LinearLayout ll = new LinearLayout(context);
+            ll.setBackgroundColor(Color.argb(255, 246, 246, 246));
             ll.setOrientation(LinearLayout.VERTICAL);
             addView(ll, new LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT));
-
-            TabWidget tw = new TabWidget(context);
-            tw.setId(android.R.id.tabs);
-            tw.setOrientation(TabWidget.HORIZONTAL);
-            ll.addView(tw, new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT, 0));
-
             FrameLayout fl = new FrameLayout(context);
             fl.setId(android.R.id.tabcontent);
             ll.addView(fl, new LinearLayout.LayoutParams(0, 0, 0));
@@ -145,6 +138,18 @@ public class FragmentTabHost  extends TabHost
             mRealTabContent.setId(mContainerId);
             ll.addView(fl, new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
+
+            View line = new View(context);
+            line.setBackgroundColor(Color.RED);
+            ll.addView(line, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
+
+            TabWidget tw = new TabWidget(context);
+            tw.setBackgroundColor(Color.argb(255, 250, 250, 250));
+            tw.setId(android.R.id.tabs);
+            tw.setOrientation(TabWidget.HORIZONTAL);
+            ll.addView(tw, new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    pxFromDp(56), 0));
         }
     }
 
@@ -174,7 +179,7 @@ public class FragmentTabHost  extends TabHost
 
     private void ensureContent() {
         if (mRealTabContent == null) {
-            mRealTabContent = (FrameLayout)findViewById(mContainerId);
+            mRealTabContent = (FrameLayout) findViewById(mContainerId);
             if (mRealTabContent == null) {
                 throw new IllegalStateException(
                         "No tab_add content FrameLayout found for id " + mContainerId);
@@ -219,10 +224,9 @@ public class FragmentTabHost  extends TabHost
         // Go through all tabs and make sure their fragments match
         // the correct state.
         FragmentTransaction ft = null;
-        for (int i=0; i<mTabs.size(); i++) {
+        for (int i = 0; i < mTabs.size(); i++) {
             TabInfo tab = mTabs.get(i);
             tab.fragment = mFragmentManager.findFragmentByTag(tab.tag);
-
             // if (tab_add.fragment != null && !tab_add.fragment.isDetached()) 修改重复创建fragment
             if (tab.fragment != null) {
                 if (tab.tag.equals(currentTab)) {
@@ -268,7 +272,7 @@ public class FragmentTabHost  extends TabHost
 
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
-        SavedState ss = (SavedState)state;
+        SavedState ss = (SavedState) state;
         super.onRestoreInstanceState(ss.getSuperState());
         setCurrentTabByTag(ss.curTab);
     }
@@ -288,7 +292,7 @@ public class FragmentTabHost  extends TabHost
 
     private FragmentTransaction doTabChanged(String tabId, FragmentTransaction ft) {
         TabInfo newTab = null;
-        for (int i=0; i<mTabs.size(); i++) {
+        for (int i = 0; i < mTabs.size(); i++) {
             TabInfo tab = mTabs.get(i);
             if (tab.tag.equals(tabId)) {
                 newTab = tab;
@@ -321,5 +325,13 @@ public class FragmentTabHost  extends TabHost
             mLastTab = newTab;
         }
         return ft;
+    }
+
+    private int dpFromPx(final float px) {
+        return (int) (px / getResources().getDisplayMetrics().density);
+    }
+
+    private int pxFromDp(final float dp) {
+        return (int) (dp * getResources().getDisplayMetrics().density);
     }
 }
