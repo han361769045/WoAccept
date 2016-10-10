@@ -53,6 +53,7 @@ public class LoginActivity extends BaseActivity {
     @AfterInject
     void afterInject() {
         myRestClient.setRestErrorHandler(myErrorHandler);
+        myRestClient.setRestTemplate(null);
     }
 
     @AfterViews
@@ -84,6 +85,28 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+//    @KeyDown
+//    void enterPressed() {
+//        //...
+//    }
+//
+//    @KeyMultiple
+//    void onEnterPressed() {
+//        //...
+//    }
+
+
+//    @Trace()
+//    @KeyMultiple(KeyEvent.KEYCODE_ESCAPE)
+//    boolean handleEscapeActionMultipleEvent(int count) {
+//        //...
+//        return false;
+//    }
+
+//    @KeyMultiple({KeyEvent.KEYCODE_F, KeyEvent.KEYCODE_G})
+//    void fOrGKeyWasMultiplePressed(int count, KeyEvent keyEvent) {
+//        //...
+//    }
 
     @Background
     void login() {

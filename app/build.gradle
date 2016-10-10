@@ -21,6 +21,7 @@ android {
 apt {
     arguments {
         androidManifestFile variant.outputs[0]?.processResources?.manifestFile
+        trace 'true'
         resourcePackageName 'com.neusoft.woaccept'
         logLevel 'ERROR'
         logAppenderConsole 'true'
