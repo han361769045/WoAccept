@@ -14,6 +14,7 @@ import com.neusoft.woaccept.MyApplication;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.App;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.HierarchyViewerSupport;
 import org.androidannotations.annotations.SystemService;
 import org.androidannotations.annotations.res.ColorRes;
 import org.androidannotations.annotations.res.StringRes;
@@ -22,6 +23,7 @@ import org.androidannotations.annotations.res.StringRes;
  * Created by Leo on 2016/4/27.
  */
 @EActivity
+@HierarchyViewerSupport
 public abstract class BaseActivity extends AppCompatActivity {
 
     @SystemService

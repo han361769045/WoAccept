@@ -53,7 +53,6 @@ public class LoginActivity extends BaseActivity {
     @AfterInject
     void afterInject() {
         myRestClient.setRestErrorHandler(myErrorHandler);
-        myRestClient.setRestTemplate(null);
     }
 
     @AfterViews

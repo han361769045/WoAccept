@@ -1,12 +1,7 @@
 package com.neusoft.woaccept.rest;
 
-import android.content.Context;
-
-import com.neusoft.woaccept.tools.AndroidTool;
-
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
-import org.androidannotations.annotations.RootContext;
-import org.androidannotations.annotations.UiThread;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,34 +23,29 @@ import java.nio.charset.Charset;
 @EBean
 public class MyResponseErrorHandlerBean implements ResponseErrorHandler {
 
-    @RootContext
-    Context context;
+    @Bean
+    MyBackgroundTask myBackgroundTask;
 
     @Override
     public boolean hasError(ClientHttpResponse response) throws IOException {
-        dismissLoading();
+
         return hasError(getHttpStatusCode(response));
     }
 
     private HttpStatus getHttpStatusCode(ClientHttpResponse response) throws IOException {
         HttpStatus statusCode;
+        myBackgroundTask.dismissLoading();
         try {
 //            InputStream stream1 = new BufferedInputStream(response.getBody());
 //            String str = new String(FileCopyUtils.copyToByteArray(stream1));
-//            Log.e(context.getPackageName(), str);
             statusCode = response.getStatusCode();
         } catch (IllegalArgumentException ex) {
             throw new UnknownHttpStatusCodeException(response.getRawStatusCode(),
                     response.getStatusText(), response.getHeaders(), getResponseBody(response), getCharset(response));
         }
+
         return statusCode;
     }
-
-    @UiThread(delay = 300)
-    void dismissLoading() {
-        AndroidTool.dismissdialog(context);
-    }
-
 
     /**
      * Template method called from {@link #hasError(ClientHttpResponse)}.
