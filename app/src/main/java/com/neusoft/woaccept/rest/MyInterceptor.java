@@ -31,7 +31,9 @@ public class MyInterceptor implements ClientHttpRequestInterceptor {
         String str = new String(data);
         Log.e(context.getClass().getName(), request.getURI().toString());
         Log.e(context.getClass().getName(), str);
-        myBackgroundTask.showLoading();
+        if (!request.getHeaders().containsKey("isLoading") || !Boolean.parseBoolean(request.getHeaders().get("isLoading").get(0))) {
+            myBackgroundTask.showLoading();
+        }
         return execution.execute(request, data);
     }
 }

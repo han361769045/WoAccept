@@ -15,6 +15,7 @@ import com.neusoft.woaccept.model.ResPayment;
 import com.neusoft.woaccept.tools.Constants;
 
 import org.androidannotations.rest.spring.annotations.Body;
+import org.androidannotations.rest.spring.annotations.Header;
 import org.androidannotations.rest.spring.annotations.Post;
 import org.androidannotations.rest.spring.annotations.Rest;
 import org.androidannotations.rest.spring.api.RestClientErrorHandling;
@@ -38,6 +39,7 @@ import java.util.List;
 public interface MyRestClient extends RestClientRootUrl, RestClientSupport, RestClientHeaders, RestClientErrorHandling {
 
     @Post(Constants.IDENTIFY_ACTION)
+    @Header(name = "isLoading", value = "true")
     ResLoginSms sendCode(@Body ReqSendCode model);
 
     @Post(Constants.LOGIN_ACTION)
@@ -51,5 +53,6 @@ public interface MyRestClient extends RestClientRootUrl, RestClientSupport, Rest
 
     @Post(Constants.SERVICE_IDQRY_ACTION)
     ResBaseModel<List<PhoneNumber>> serviceidqry(@Body ReqBaseModel<Msg<ReqSelectPhoneNumber>> model);
+
 }
 
