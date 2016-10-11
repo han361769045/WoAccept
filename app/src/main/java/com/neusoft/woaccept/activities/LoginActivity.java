@@ -84,29 +84,6 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-//    @KeyDown
-//    void enterPressed() {
-//        //...
-//    }
-//
-//    @KeyMultiple
-//    void onEnterPressed() {
-//        //...
-//    }
-
-
-//    @Trace()
-//    @KeyMultiple(KeyEvent.KEYCODE_ESCAPE)
-//    boolean handleEscapeActionMultipleEvent(int count) {
-//        //...
-//        return false;
-//    }
-
-//    @KeyMultiple({KeyEvent.KEYCODE_F, KeyEvent.KEYCODE_G})
-//    void fOrGKeyWasMultiplePressed(int count, KeyEvent keyEvent) {
-//        //...
-//    }
-
     @Background
     void login() {
         ReqLogin reqLogin = new ReqLogin();
@@ -120,11 +97,9 @@ public class LoginActivity extends BaseActivity {
 
     @UiThread
     void afterLogin(ResLogin result) {
-        Log.e(this.getPackageName() + this.getLocalClassName(), new Gson().toJson(result));
         if (result == null) {
             AndroidTool.showToast(this, no_net);
         } else if ("0000".equals(result.getCode())) {
-            Log.e(this.getPackageName() + this.getLocalClassName(), new Gson().toJson(result));
             app.setResLogin(result);
             MainActivity_.intent(this).start();
             finish();
