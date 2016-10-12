@@ -18,7 +18,8 @@ android {
         debug {
             keyAlias 'debug'
             keyPassword  properties.getProperty("keyPassword")
-            storeFile file('D:/AndroidStudioProjects/WoAccept/debug.jks')
+//            storeFile file('/debug.jks')
+            storeFile project.rootProject.file('debug.jks')
             storePassword properties.getProperty("storePassword")
         }
 
@@ -27,14 +28,13 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
             applicationIdSuffix ".test"
-            minifyEnabled false
+            minifyEnabled true
             signingConfig signingConfigs.debug
-            buildConfigField "String", "ROOT_URL", "\"http://130.84.1.100:8090/crm4/rest/111\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

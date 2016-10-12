@@ -51,7 +51,6 @@ public interface MyRestClient extends RestClientRootUrl, RestClientSupport, Rest
 
     @Post(Constants.IDENTIFY_ACTION)
     @Header(name = "isLoading", value = "true")
-    @Accept(MediaType.APPLICATION_XML)
     ResLoginSms sendCode(@Body ReqSendCode model);
 
     @Post(Constants.LOGIN_ACTION)
