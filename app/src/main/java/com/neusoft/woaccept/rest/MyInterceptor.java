@@ -3,6 +3,8 @@ package com.neusoft.woaccept.rest;
 import android.content.Context;
 import android.util.Log;
 
+import com.neusoft.woaccept.BuildConfig;
+
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
@@ -28,9 +30,12 @@ public class MyInterceptor implements ClientHttpRequestInterceptor {
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] data,
                                         ClientHttpRequestExecution execution) throws IOException {
-        String str = new String(data);
-        Log.e(context.getClass().getName(), request.getURI().toString());
-        Log.e(context.getClass().getName(), str);
+        if (BuildConfig.DEBUG){
+            String str = new String(data);
+            Log.e(context.getClass().getName(), request.getURI().toString());
+            Log.e(context.getClass().getName(), str);
+        }
+
         if (!request.getHeaders().containsKey("isLoading") || Boolean.parseBoolean(request.getHeaders().get("isLoading").get(0))) {
             myBackgroundTask.showLoading();
         }

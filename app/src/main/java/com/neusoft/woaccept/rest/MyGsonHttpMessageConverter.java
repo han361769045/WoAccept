@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
+import com.neusoft.woaccept.BuildConfig;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpInputMessage;
@@ -181,7 +182,9 @@ public class MyGsonHttpMessageConverter extends AbstractHttpMessageConverter<Obj
         Reader json = new InputStreamReader(inputMessage.getBody(), getCharset(inputMessage.getHeaders()));
         try {
             Object object = getGson().fromJson(json, token.getType());
-            Log.e(getClass().getName(), this.gson.toJson(object));
+            if (BuildConfig.DEBUG) {
+                Log.e(getClass().getName(), this.gson.toJson(object));
+            }
             return object;
         } catch (JsonParseException ex) {
             throw new HttpMessageNotReadableException("Could not read JSON: " + ex.getMessage(), ex);
