@@ -15,6 +15,7 @@ import android.support.v7.widget.AppCompatDrawableManager;
 import android.support.v7.widget.TintTypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.neusoft.woaccept.BuildConfig;
 import com.neusoft.woaccept.R;
 
 
@@ -86,14 +88,10 @@ public class MyTitleBar extends RelativeLayout {
     public MyTitleBar(final Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         final TintTypedArray a = TintTypedArray.obtainStyledAttributes(getContext(), attrs, R.styleable.MyTitleBar, defStyleAttr, 0);
-
         mRightTextMarginRight = a.getDimensionPixelSize(R.styleable.MyTitleBar_mRightTextMarginRight, pxFromDp(0));
         mLeftTextMarginLeft = a.getDimensionPixelSize(R.styleable.MyTitleBar_mLeftTextMarginLeft, pxFromDp(0));
-
-
         mCustomViewMarginRight = a.getDimensionPixelSize(R.styleable.MyTitleBar_mCustomViewMarginRight, pxFromDp(0));
         mCustomViewMarginLeft = a.getDimensionPixelSize(R.styleable.MyTitleBar_mCustomViewMarginLeft, pxFromDp(0));
-
         mStatueBarIsTransparent = a.getBoolean(R.styleable.MyTitleBar_mStatueBarIsTransparent, false) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
         if (mStatueBarIsTransparent && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setStatueBarTransparent();
@@ -230,6 +228,30 @@ public class MyTitleBar extends RelativeLayout {
             getLayoutParams().height = pxFromDp(70);
         } else {
             getLayoutParams().height = pxFromDp(50);
+        }
+        if (mCustomView != null && mCustomView.isShown()) {
+            int marginL = mCustomViewMarginLeft;
+            int martinR = mCustomViewMarginRight;
+            if (mLeftTextView != null && mLeftTextView.isShown()) {
+                marginL += mLeftTextView.getWidth() + mLeftTextMarginLeft;
+            }
+            if (mNavButtonView != null && mNavButtonView.isShown()) {
+                marginL += mNavButtonView.getWidth();
+            }
+            if (logoView != null && logoView.isShown()) {
+                marginL += logoView.getWidth();
+            }
+            if (mRightTextView != null && mRightTextView.isShown()) {
+                martinR += mRightTextView.getWidth() + mRightTextMarginRight;
+            }
+            if (mRightButtonView != null && mRightButtonView.isShown()) {
+                martinR += mRightButtonView.getWidth();
+            }
+            LayoutParams layoutParams = (RelativeLayout.LayoutParams) mCustomView.getLayoutParams();
+            layoutParams.setMargins(marginL, 0, martinR, 0);
+            if (BuildConfig.DEBUG) {
+                Log.e(TAG, marginL + "------" + martinR);
+            }
         }
     }
 
