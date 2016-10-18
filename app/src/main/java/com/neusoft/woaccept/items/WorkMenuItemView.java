@@ -62,16 +62,5 @@ public class WorkMenuItemView extends ItemView<WorkMenuBean> {
                 home_item_icon.setImageResource(R.drawable.menu_yudenglu);
                 break;
         }
-
-    }
-
-    @Override
-    public void onItemSelected() {
-
-    }
-
-    @Override
-    public void onItemClear() {
-
     }
 }

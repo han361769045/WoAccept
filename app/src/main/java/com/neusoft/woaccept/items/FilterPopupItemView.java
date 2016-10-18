@@ -31,15 +31,4 @@ public class FilterPopupItemView extends ItemView<PhoneNumberType> {
         txt_type_one.setText(_data.getTypeName());
         txt_min_cost.setText(String.format(min_cost, _data.getTypeDesc()));
     }
-
-
-    @Override
-    public void onItemSelected() {
-
-    }
-
-    @Override
-    public void onItemClear() {
-
-    }
 }

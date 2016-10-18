@@ -2,17 +2,14 @@ package com.neusoft.woaccept.fragments;
 
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.TextView;
 
-import com.leo.lu.hfrefreshrecyclerview.CustomHFRefreshRecyclerView;
-import com.leo.lu.hfrefreshrecyclerview.HFRefreshRecyclerView;
-import com.leo.lu.hfrefreshrecyclerview.layoutmanagers.ScrollSmoothLineaerLayoutManager;
-import com.leo.lu.hfrefreshrecyclerview.ui.divideritemdecoration.HorizontalDividerItemDecoration;
+import com.leo.lu.llrecyclerview.LLRecyclerView;
+import com.leo.lu.llrecyclerview.ui.divideritemdecoration.HorizontalDividerItemDecoration;
 import com.neusoft.woaccept.adapters.BaseUltimateRecyclerViewAdapter;
 import com.neusoft.woaccept.customview.MyTitleBar;
 import com.neusoft.woaccept.listener.OttoBus;
@@ -40,7 +37,7 @@ public abstract class BaseUltimateRecyclerViewFragment<T> extends BaseFragment {
     MyTitleBar myTitleBar;
 
     @ViewById
-    CustomHFRefreshRecyclerView ultimateRecyclerView;
+    LLRecyclerView ultimateRecyclerView;
 
     BaseUltimateRecyclerViewAdapter<T> myAdapter;
 
@@ -117,36 +114,10 @@ public abstract class BaseUltimateRecyclerViewFragment<T> extends BaseFragment {
 
     public abstract void afterLoadMore();
 
-    /**
-     * 配置管理器
-     *
-     * @param rv
-     */
-    public void configLinearLayoutManager(HFRefreshRecyclerView rv) {
-        ScrollSmoothLineaerLayoutManager mgm = new ScrollSmoothLineaerLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false, 300);
-        rv.setLayoutManager(mgm);
-    }
-
-    public void configStaggerLayoutManager(HFRefreshRecyclerView rv) {
+    public void configStaggerLayoutManager(LLRecyclerView rv) {
         StaggeredGridLayoutManager gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         rv.setLayoutManager(gaggeredGridLayoutManager);
     }
-
-
-    /**
-     * 设置默认的 下拉刷新
-     */
-    public void defaultOnRefresh() {
-        ultimateRecyclerView.setDefaultOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                isRefresh = true;
-                pageIndex = 1;
-                afterLoadMore();
-            }
-        });
-    }
-
 
     /**
      * 设置 Material 下拉刷新
@@ -209,7 +180,6 @@ public abstract class BaseUltimateRecyclerViewFragment<T> extends BaseFragment {
         if (isRefresh) {
             linearLayoutManager.scrollToPosition(0);
             ultimateRecyclerView.mPtrFrameLayout.refreshComplete();
-            ultimateRecyclerView.setRefreshing(false);
             isRefresh = false;
             if (myAdapter.getItems().size() < myAdapter.getTotal()) {
                 if (!ultimateRecyclerView.isLoadMoreEnabled())
@@ -249,7 +219,7 @@ public abstract class BaseUltimateRecyclerViewFragment<T> extends BaseFragment {
 
     public void enableLoadMore() {
 //        ultimateRecyclerView.setLoadMoreView(R.layout.custom_bottom_progressbar);
-        ultimateRecyclerView.setOnLoadMoreListener(new HFRefreshRecyclerView.OnLoadMoreListener() {
+        ultimateRecyclerView.setOnLoadMoreListener(new LLRecyclerView.OnLoadMoreListener() {
             @Override
             public void loadMore(int itemsCount, final int maxLastVisiblePosition) {
                 if (myAdapter.getItems().size() >= myAdapter.getTotal()) {

@@ -7,12 +7,10 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.TextView;
 
-import com.leo.lu.hfrefreshrecyclerview.CustomHFRefreshRecyclerView;
-import com.leo.lu.hfrefreshrecyclerview.HFRefreshRecyclerView;
-import com.leo.lu.hfrefreshrecyclerview.layoutmanagers.ScrollSmoothLineaerLayoutManager;
-import com.leo.lu.hfrefreshrecyclerview.ui.divideritemdecoration.HorizontalDividerItemDecoration;
-import com.leo.lu.hfrefreshrecyclerview.ui.divideritemdecoration.VerticalDividerItemDecoration;
-import com.leo.lu.hfrefreshrecyclerview.ui.header.RentalsSunHeaderView;
+import com.leo.lu.llrecyclerview.LLRecyclerView;
+import com.leo.lu.llrecyclerview.ui.divideritemdecoration.HorizontalDividerItemDecoration;
+import com.leo.lu.llrecyclerview.ui.divideritemdecoration.VerticalDividerItemDecoration;
+import com.leo.lu.llrecyclerview.ui.header.RentalsSunHeaderView;
 import com.neusoft.woaccept.adapters.BaseUltimateRecyclerViewAdapter;
 import com.neusoft.woaccept.customview.MyTitleBar;
 import com.neusoft.woaccept.listener.OttoBus;
@@ -42,7 +40,7 @@ public abstract class BaseUltimateRecyclerViewActivity<T> extends BaseActivity {
     MyTitleBar myTitleBar;
 
     @ViewById(resName = "ultimate_recycler_view")
-    CustomHFRefreshRecyclerView ultimateRecyclerView;
+    LLRecyclerView ultimateRecyclerView;
 
     BaseUltimateRecyclerViewAdapter<T> myAdapter;
 
@@ -144,17 +142,7 @@ public abstract class BaseUltimateRecyclerViewActivity<T> extends BaseActivity {
 
     public abstract void afterLoadMore();
 
-    /**
-     * 配置管理器
-     *
-     * @param rv
-     */
-    public void configLinearLayoutManager(HFRefreshRecyclerView rv) {
-        ScrollSmoothLineaerLayoutManager mgm = new ScrollSmoothLineaerLayoutManager(this, LinearLayoutManager.VERTICAL, false, 300);
-        rv.setLayoutManager(mgm);
-    }
-
-    public void configStaggerLayoutManager(HFRefreshRecyclerView rv) {
+    public void configStaggerLayoutManager(LLRecyclerView rv) {
         StaggeredGridLayoutManager gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         rv.setLayoutManager(gaggeredGridLayoutManager);
     }
@@ -246,7 +234,6 @@ public abstract class BaseUltimateRecyclerViewActivity<T> extends BaseActivity {
         if (isRefresh) {
             linearLayoutManager.scrollToPosition(0);
             ultimateRecyclerView.mPtrFrameLayout.refreshComplete();
-            ultimateRecyclerView.setRefreshing(false);
             isRefresh = false;
             if (myAdapter.getItems().size() < myAdapter.getTotal()) {
                 if (!ultimateRecyclerView.isLoadMoreEnabled())
@@ -277,7 +264,7 @@ public abstract class BaseUltimateRecyclerViewActivity<T> extends BaseActivity {
     public void enableParallaxHeader(int layoutId) {
         View view = layoutInflater.inflate(layoutId, ultimateRecyclerView.mRecyclerView, false);
         ultimateRecyclerView.setParallaxHeader(view);
-        ultimateRecyclerView.setOnParallaxScroll(new HFRefreshRecyclerView.OnParallaxScroll() {
+        ultimateRecyclerView.setOnParallaxScroll(new LLRecyclerView.OnParallaxScroll() {
             @Override
             public void onParallaxScroll(float percentage, float offset, View parallax) {
 
@@ -286,7 +273,7 @@ public abstract class BaseUltimateRecyclerViewActivity<T> extends BaseActivity {
     }
 
     public void enableLoadMore() {
-        ultimateRecyclerView.setOnLoadMoreListener(new HFRefreshRecyclerView.OnLoadMoreListener() {
+        ultimateRecyclerView.setOnLoadMoreListener(new LLRecyclerView.OnLoadMoreListener() {
             @Override
             public void loadMore(int itemsCount, final int maxLastVisiblePosition) {
                 if (myAdapter.getItems().size() >= myAdapter.getTotal()) {

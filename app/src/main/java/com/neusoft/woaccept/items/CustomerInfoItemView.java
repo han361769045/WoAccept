@@ -53,14 +53,4 @@ public class CustomerInfoItemView extends ItemView<CustomerInfo> {
         }
         mPaymentSearchResultActivity.changeStatue(_data);
     }
-
-    @Override
-    public void onItemSelected() {
-
-    }
-
-    @Override
-    public void onItemClear() {
-
-    }
 }

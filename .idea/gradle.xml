@@ -9,8 +9,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/HFRefreshRecyclerView" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/llrecyclerview" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

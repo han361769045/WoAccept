@@ -35,14 +35,4 @@ public class SelectNumItemView extends ItemView<PhoneNumber> {
             item_tv_pre_save.setText(String.format(pre_cost, _data.getAdvancePay()));
         }
     }
-
-    @Override
-    public void onItemSelected() {
-
-    }
-
-    @Override
-    public void onItemClear() {
-
-    }
 }

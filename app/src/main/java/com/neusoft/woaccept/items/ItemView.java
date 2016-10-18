@@ -4,14 +4,13 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.widget.LinearLayout;
 
-import com.leo.lu.hfrefreshrecyclerview.itemTouchHelper.ItemTouchHelperViewHolder;
 import com.neusoft.woaccept.adapters.BaseRecyclerViewAdapter;
 import com.neusoft.woaccept.adapters.BaseUltimateRecyclerViewAdapter;
 
 /**
  * Created by Leo on 2016/4/27.
  */
-public abstract class ItemView<T> extends LinearLayout implements ItemTouchHelperViewHolder {
+public abstract class ItemView<T> extends LinearLayout {
 
     protected T _data;
 

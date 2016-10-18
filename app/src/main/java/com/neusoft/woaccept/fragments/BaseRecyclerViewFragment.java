@@ -5,7 +5,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.leo.lu.hfrefreshrecyclerview.ui.divideritemdecoration.HorizontalDividerItemDecoration;
+import com.leo.lu.llrecyclerview.ui.divideritemdecoration.HorizontalDividerItemDecoration;
 import com.neusoft.woaccept.adapters.BaseRecyclerViewAdapter;
 import com.neusoft.woaccept.customview.MyTitleBar;
 import com.neusoft.woaccept.rest.MyErrorHandler;

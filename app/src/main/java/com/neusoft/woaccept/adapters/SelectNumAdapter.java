@@ -1,6 +1,5 @@
 package com.neusoft.woaccept.adapters;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -35,8 +34,10 @@ public class SelectNumAdapter extends BaseUltimateRecyclerViewAdapter<PhoneNumbe
             pr.RowCount = pr.ListData.size();
             result.setCode(list.getCode());
             result.setDetail(list.getDetail());
-        } else if (list != null) {
+        } else {
             pr.ListData = new ArrayList<>();
+            pr.PageIndex = pageIndex;
+            pr.RowCount = pr.ListData.size();
         }
         result.setNumInfo(pr);
         afterGetMoreData(result);
@@ -47,9 +48,5 @@ public class SelectNumAdapter extends BaseUltimateRecyclerViewAdapter<PhoneNumbe
         return SelectNumItemView_.build(context);
     }
 
-    @Override
-    public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int position) {
-
-    }
 
 }
