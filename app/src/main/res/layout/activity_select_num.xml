@@ -9,7 +9,7 @@
 
     <com.neusoft.woaccept.customview.MyTitleBar
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:background="@color/colorPrimary"
         app:mCustomView="@layout/title_num_search"
         app:mCustomViewGravity="mRight"
@@ -26,7 +26,6 @@
         android:id="@+id/ultimate_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:recyclerViewClipToPadding="true"
         app:recyclerViewEmptyView="@layout/empty_view"
         />
 

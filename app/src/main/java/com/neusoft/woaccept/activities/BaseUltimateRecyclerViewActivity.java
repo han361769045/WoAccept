@@ -126,7 +126,6 @@ public abstract class BaseUltimateRecyclerViewActivity<T> extends BaseActivity {
         verticalItem();
     }
 
-
     //线性布局
     public void verticalItem() {
         myAdapter.verticalAndHorizontal = BaseUltimateRecyclerViewAdapter.VerticalAndHorizontal.Vertical;
@@ -171,7 +170,6 @@ public abstract class BaseUltimateRecyclerViewActivity<T> extends BaseActivity {
         });
     }
 
-
     /**
      * 设置 Material 下拉刷新
      */
@@ -203,7 +201,6 @@ public abstract class BaseUltimateRecyclerViewActivity<T> extends BaseActivity {
             }
         });
     }
-
 
     public void refreshingString() {
         ultimateRecyclerView.setCustomSwipeToRefresh();

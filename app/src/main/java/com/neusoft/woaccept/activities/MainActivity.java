@@ -12,12 +12,10 @@ import com.neusoft.woaccept.fragments.HomeFragment_;
 import com.neusoft.woaccept.fragments.MineFragment_;
 import com.neusoft.woaccept.fragments.OrderFragment_;
 import com.neusoft.woaccept.fragments.ServiceFragment_;
-import com.neusoft.woaccept.model.TestP;
 import com.neusoft.woaccept.tools.AndroidTool;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringArrayRes;
 
@@ -29,9 +27,6 @@ public class MainActivity extends BaseActivity {
 
     @StringArrayRes
     String[] tabTag, tabTitle;
-
-    @Extra
-    TestP a;
 
     //导航
     Class[] classTab = {HomeFragment_.class, ServiceFragment_.class, OrderFragment_.class, MineFragment_.class};
