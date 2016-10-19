@@ -13,7 +13,7 @@
         app:mCustomView="@layout/title_search"
         app:mCustomViewGravity="mLeft"
         app:mCustomViewMarginLeft="@dimen/_15dp"
-        app:mCustomViewMarginRight="@dimen/_50dp"
+        app:mCustomViewMarginRight="@dimen/_15dp"
         app:mRightText="@string/cancel"
         app:mRightTextColor="@color/app_black_text"
         app:mRightTextMarginRight="@dimen/_15dp"

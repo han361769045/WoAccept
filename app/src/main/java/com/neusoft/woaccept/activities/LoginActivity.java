@@ -10,6 +10,7 @@ import com.neusoft.woaccept.model.ReqLogin;
 import com.neusoft.woaccept.model.ReqSendCode;
 import com.neusoft.woaccept.model.ResLogin;
 import com.neusoft.woaccept.model.ResLoginSms;
+import com.neusoft.woaccept.model.TestP;
 import com.neusoft.woaccept.rest.MyErrorHandler;
 import com.neusoft.woaccept.rest.MyRestClient;
 import com.neusoft.woaccept.tools.AndroidTool;
@@ -101,7 +102,7 @@ public class LoginActivity extends BaseActivity {
             AndroidTool.showToast(this, no_net);
         } else if ("0000".equals(result.getCode())) {
             app.setResLogin(result);
-            MainActivity_.intent(this).start();
+            MainActivity_.intent(this).a(new TestP("11", 1)).start();
             finish();
         } else {
             AndroidTool.showToast(this, result.getDetail());

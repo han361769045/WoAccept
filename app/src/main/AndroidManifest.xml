@@ -12,7 +12,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="${label}"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/MyAppTheme">
         <activity android:name=".activities.LoginActivity_">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

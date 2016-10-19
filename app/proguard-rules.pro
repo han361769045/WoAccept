@@ -41,6 +41,11 @@
 -keep public class com.android.vending.licensing.ILicensingService
 -keep public class * extends android.support.v4.**
 
+# Parcel library
+-keep interface org.parceler.Parcel
+-keep @org.parceler.Parcel class * { *; }
+-keep class **$$Parcelable { *; }
+
 #保持 native 方法不被混淆
 -keepclasseswithmembernames class * {
     native <methods>;
