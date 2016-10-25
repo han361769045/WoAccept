@@ -1,6 +1,6 @@
 package ${packageName}.rest;
 
-import com.neusoft.woaccept.BuildConfig;
+import ${packageName}.BuildConfig;
 
 
 import org.androidannotations.rest.spring.annotations.Accept;

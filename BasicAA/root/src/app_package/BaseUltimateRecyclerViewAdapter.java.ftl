@@ -10,18 +10,15 @@ import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
-import com.leo.lu.hfrefreshrecyclerview.HFRefreshViewAdapter;
-import com.leo.lu.hfrefreshrecyclerview.swipe.SwipeItemManagerImpl;
-import com.leo.lu.hfrefreshrecyclerview.swipe.SwipeItemManagerInterface;
-import com.leo.lu.hfrefreshrecyclerview.swipe.SwipeLayout;
-import com.neusoft.woaccept.items.BaseUltimateViewHolder;
-import com.neusoft.woaccept.items.ItemView;
-import com.neusoft.woaccept.listener.OttoBus;
-import com.neusoft.woaccept.model.PagerResult;
-import com.neusoft.woaccept.model.ResBaseModel;
-import com.neusoft.woaccept.rest.MyErrorHandler;
-import com.neusoft.woaccept.rest.MyRestClient;
-import com.neusoft.woaccept.tools.AndroidTool;
+import com.leo.lu.llrecyclerview.LLRecyclerViewAdapter;
+import ${packageName}.items.BaseViewHolder;
+import ${packageName}.items.ItemView;
+import ${packageName}.listener.OttoBus;
+import ${packageName}.model.PagerResult;
+import ${packageName}.model.BaseModel;
+import ${packageName}.rest.MyErrorHandler;
+import ${packageName}.rest.MyRestClient;
+import ${packageName}.tools.AndroidTool;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Background;
@@ -39,10 +36,9 @@ import java.util.List;
  * Created by leo on 2015/10/31.
  */
 @EBean
-public abstract class BaseUltimateRecyclerViewAdapter<T> extends HFRefreshViewAdapter<BaseUltimateViewHolder> implements SwipeItemManagerInterface {
+public abstract class BaseUltimateRecyclerViewAdapter<T> extends LLRecyclerViewAdapter<BaseViewHolder> {
     private DynamicHeight dynamicHeight;
     public VerticalAndHorizontal verticalAndHorizontal;
-    protected SwipeItemManagerImpl mItemManger = new SwipeItemManagerImpl(this);
     private List<T> items = new ArrayList<>();
     private int total = 0;
     private boolean isFirstOnly = true;
@@ -81,9 +77,9 @@ public abstract class BaseUltimateRecyclerViewAdapter<T> extends HFRefreshViewAd
     public abstract void getMoreData(int pageIndex, int pageSize, boolean isRefresh, Object... objects);
 
     @UiThread
-    protected void afterGetMoreData(BaseModelJson<PagerResult<T>> result) {
+    protected void afterGetMoreData(BaseModel<PagerResult<T>> result) {
         if (result == null) {
-            result = new BaseModelJson<>();
+            result = new BaseModel<>();
         } else if ("0000".equals(result.getCode()) || result.getCode() == null) {
             if (isRefresh) {
                 clear();
@@ -101,17 +97,13 @@ public abstract class BaseUltimateRecyclerViewAdapter<T> extends HFRefreshViewAd
     }
 
     @Override
-    public void onBindViewHolder(BaseUltimateViewHolder viewHolder, int position) {
+    public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
         if (getItemViewType(position) == BaseUltimateRecyclerViewAdapter.VIEW_TYPES.NORMAL) {
             ItemView<T> itemView = (ItemView) viewHolder.itemView;
             itemView.init(items.get(customHeaderView != null ? position - 1 : position), this, viewHolder);
-            if (viewHolder.swipeLayout != null) {
-                mItemManger.updateConvertView(viewHolder, position);
-            }
             setNormalClick(viewHolder);
         } else if (getItemViewType(position) == VIEW_TYPES.HEADER) {
             setHeaderClick(viewHolder);
-            onBindHeaderViewHolder(viewHolder, position);
         } else if (getItemViewType(position) == VIEW_TYPES.FOOTER) {
 
         }
@@ -124,13 +116,13 @@ public abstract class BaseUltimateRecyclerViewAdapter<T> extends HFRefreshViewAd
     }
 
     @Override
-    public BaseUltimateViewHolder newFooterHolder(View view) {
-        return new BaseUltimateViewHolder(view);
+    public BaseViewHolder newFooterHolder(View view) {
+        return new BaseViewHolder(view);
     }
 
     @Override
-    public BaseUltimateViewHolder newHeaderHolder(View view) {
-        return new BaseUltimateViewHolder(view);
+    public BaseViewHolder newHeaderHolder(View view) {
+        return new BaseViewHolder(view);
     }
 
     /**
@@ -139,7 +131,7 @@ public abstract class BaseUltimateRecyclerViewAdapter<T> extends HFRefreshViewAd
      * @param view v
      * @return holder for this ADVIEW
      */
-    public BaseUltimateViewHolder getAdViewHolder(View view) {
+    public BaseViewHolder getAdViewHolder(View view) {
         return null;
     }
 
@@ -149,57 +141,17 @@ public abstract class BaseUltimateRecyclerViewAdapter<T> extends HFRefreshViewAd
      * @param view v
      * @return v
      */
-    public BaseUltimateViewHolder newCustomViewHolder(View view) {
+    public BaseViewHolder newCustomViewHolder(View view) {
         return null;
     }
 
     @Override
-    public BaseUltimateViewHolder onCreateViewHolder(ViewGroup parent) {
+    public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
         final View view = onCreateItemView(parent);
         // //修正 item不充满
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(params);
-        final BaseUltimateViewHolder baseViewHolder = new BaseUltimateViewHolder(view);
-        SwipeLayout swipeLayout = baseViewHolder.swipeLayout;
-        if (swipeLayout != null) {
-            swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
-            swipeLayout.setOnDoubleClickListener(new SwipeLayout.DoubleClickListener() {
-                @Override
-                public void onDoubleClick(SwipeLayout layout, boolean surface) {
-
-                }
-            });
-            swipeLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ((SwipeLayout) v).close();
-                }
-            });
-            swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (getOpenItems().get(0) != -1) {
-                        closeItem(getOpenItems().get(0));
-                        closeAllExcept(null);
-                    } else {
-                        view.performClick();
-                    }
-                }
-            });
-            swipeLayout.getSurfaceView().setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    if (getOpenItems().get(0) != -1) {
-                        //closeItem(getOpenItems().get(0));
-                        closeAllExcept(null);
-                    } else {
-                        view.performLongClick();
-                    }
-                    return false;
-                }
-            });
-        }
-        return baseViewHolder;
+        return new BaseViewHolder(view);
     }
 
 
@@ -226,17 +178,12 @@ public abstract class BaseUltimateRecyclerViewAdapter<T> extends HFRefreshViewAd
      *
      * @param viewHolder
      */
-    private void setNormalClick(final BaseUltimateViewHolder viewHolder) {
+    private void setNormalClick(final BaseViewHolder viewHolder) {
         if (onItemClickListener != null) {
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (getOpenItems().get(0) != -1 && viewHolder.swipeLayout != null) {
-                        //closeItem(getOpenItems().get(0));
-                        closeAllExcept(null);
-                    } else {
-                        onItemClickListener.onItemClick(viewHolder, items.get(customHeaderView != null ? viewHolder.getAdapterPosition() - 1 : viewHolder.getAdapterPosition()), viewHolder.getAdapterPosition());
-                    }
+                    onItemClickListener.onItemClick(viewHolder, items.get(customHeaderView != null ? viewHolder.getAdapterPosition() - 1 : viewHolder.getAdapterPosition()), viewHolder.getAdapterPosition());
                 }
             });
         }
@@ -244,12 +191,7 @@ public abstract class BaseUltimateRecyclerViewAdapter<T> extends HFRefreshViewAd
             viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    if (getOpenItems().get(0) != -1 && viewHolder.swipeLayout != null) {
-                        //closeItem(getOpenItems().get(0));
-                        closeAllExcept(null);
-                    } else {
-                        onItemLongClickListener.onItemLongClick(viewHolder, items.get(customHeaderView != null ? viewHolder.getAdapterPosition() - 1 : viewHolder.getAdapterPosition()), viewHolder.getAdapterPosition());
-                    }
+                    onItemLongClickListener.onItemLongClick(viewHolder, items.get(customHeaderView != null ? viewHolder.getAdapterPosition() - 1 : viewHolder.getAdapterPosition()), viewHolder.getAdapterPosition());
                     return false;
                 }
             });
@@ -261,18 +203,13 @@ public abstract class BaseUltimateRecyclerViewAdapter<T> extends HFRefreshViewAd
      *
      * @param viewHolder
      */
-    private void setHeaderClick(final BaseUltimateViewHolder viewHolder) {
+    private void setHeaderClick(final BaseViewHolder viewHolder) {
 
         if (onItemClickListener != null) {
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (getOpenItems().get(0) != -1) {
-                        //closeItem(getOpenItems().get(0));
-                        closeAllExcept(null);
-                    } else {
-                        onItemClickListener.onHeaderClick(viewHolder, viewHolder.getAdapterPosition());
-                    }
+                    onItemClickListener.onHeaderClick(viewHolder, viewHolder.getAdapterPosition());
                 }
             });
         }
@@ -280,12 +217,7 @@ public abstract class BaseUltimateRecyclerViewAdapter<T> extends HFRefreshViewAd
             viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    if (getOpenItems().get(0) != -1) {
-                        //closeItem(getOpenItems().get(0));
-                        closeAllExcept(null);
-                    } else {
-                        onItemLongClickListener.onHeaderLongClick(viewHolder, viewHolder.getAdapterPosition());
-                    }
+                    onItemLongClickListener.onHeaderLongClick(viewHolder, viewHolder.getAdapterPosition());
                     return false;
                 }
             });
@@ -313,60 +245,6 @@ public abstract class BaseUltimateRecyclerViewAdapter<T> extends HFRefreshViewAd
     public long generateHeaderId(int position) {
         return position;
     }
-
-    @Override
-    public void openItem(int position) {
-        mItemManger.openItem(position);
-    }
-
-    @Override
-    public void closeItem(int position) {
-        mItemManger.closeItem(position);
-    }
-
-    @Override
-    public void closeAllExcept(SwipeLayout layout) {
-        mItemManger.closeAllExcept(layout);
-    }
-
-    @Override
-    public List<Integer> getOpenItems() {
-        return mItemManger.getOpenItems();
-    }
-
-    @Override
-    public List<SwipeLayout> getOpenLayouts() {
-        return mItemManger.getOpenLayouts();
-    }
-
-    @Override
-    public void removeShownLayouts(SwipeLayout layout) {
-        mItemManger.removeShownLayouts(layout);
-    }
-
-    @Override
-    public boolean isOpen(int position) {
-        return mItemManger.isOpen(position);
-    }
-
-
-    @Override
-    public SwipeItemManagerImpl.Mode getMode() {
-        return mItemManger.getMode();
-    }
-
-    @Override
-    public void setMode(SwipeItemManagerImpl.Mode mode) {
-        mItemManger.setMode(mode);
-    }
-
-
-    ///不实现
-    @Override
-    public RecyclerView.ViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
-        return null;
-    }
-
 
     /**
      * set adapter item click

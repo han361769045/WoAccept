@@ -5,11 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.neusoft.woaccept.items.BaseViewHolder;
-import com.neusoft.woaccept.items.ItemView;
-import com.neusoft.woaccept.model.BaseModelJson;
-import com.neusoft.woaccept.rest.MyErrorHandler;
-import com.neusoft.woaccept.tools.AndroidTool;
+import ${packageName}.items.BaseViewHolder;
+import ${packageName}.items.ItemView;
+import ${packageName}.model.BaseModelJson;
+import ${packageName}.rest.MyErrorHandler;
+import ${packageName}.tools.AndroidTool;
 
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;

@@ -53,4 +53,8 @@ dependencies {
     compile 'com.daimajia.slider:library:1.1.5@aar'
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.squareup:otto:1.3.8'
+	compile 'com.leo.lu:llrecyclerview:1.0.0'
+    compile 'com.leo.lu:mytitlebar:1.0.0'
+    compile 'org.parceler:parceler-api:1.1.5'
+    apt 'org.parceler:parceler:1.1.5'
 }

@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
-import com.neusoft.woaccept.BuildConfig;
+import ${packageName}.BuildConfig;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpInputMessage;

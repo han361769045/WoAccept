@@ -13,6 +13,8 @@ import org.springframework.web.client.ResponseErrorHandler;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.UnknownHttpStatusCodeException;
 
+import ${packageName}.tools.AndroidTool;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
@@ -23,8 +25,9 @@ import java.nio.charset.Charset;
 @EBean
 public class MyResponseErrorHandlerBean implements ResponseErrorHandler {
 
-    @Bean
-    MyBackgroundTask myBackgroundTask;
+    @RootContext
+    Context context;
+
 
     @Override
     public boolean hasError(ClientHttpResponse response) throws IOException {
@@ -34,7 +37,7 @@ public class MyResponseErrorHandlerBean implements ResponseErrorHandler {
 
     private HttpStatus getHttpStatusCode(ClientHttpResponse response) throws IOException {
         HttpStatus statusCode;
-        myBackgroundTask.dismissLoading();
+        AndroidTool.dismissdialog();
         try {
 //            InputStream stream1 = new BufferedInputStream(response.getBody());
 //            String str = new String(FileCopyUtils.copyToByteArray(stream1));

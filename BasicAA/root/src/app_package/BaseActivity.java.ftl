@@ -41,15 +41,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @AfterViews
     void baseAfterView() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0 全透明状态栏
-            View decorView = getWindow().getDecorView();
-            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-            decorView.setSystemUiVisibility(option);
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//4.4 全透明状态栏
-            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
-            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
-        }
+        
     }
 }

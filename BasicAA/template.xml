@@ -6,7 +6,7 @@
         minApi="9"
         minBuildApi="14"
         requireAppTheme="true"
-        description="Creates a new basic activity with an app bar.">
+        description="Creates a new basic activity with an Androidannotations.">
 
     <category value="Activity"/>
     <formfactor value="Mobile"/>

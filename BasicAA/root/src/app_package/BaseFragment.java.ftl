@@ -7,14 +7,15 @@ import android.net.NetworkInfo;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 
+import org.androidannotations.annotations.App;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.SystemService;
 import org.androidannotations.annotations.res.ColorRes;
 import org.androidannotations.annotations.res.StringRes;
 
-<#if applicationPackage??>
-import ${applicationPackage}.MyApplication;
-</#if>
+
+import ${packageName}.MyApplication;
+
 
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.SystemService;

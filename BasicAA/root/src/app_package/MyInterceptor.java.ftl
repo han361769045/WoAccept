@@ -3,7 +3,9 @@ package ${packageName}.rest;
 import android.content.Context;
 import android.util.Log;
 
-import com.neusoft.woaccept.BuildConfig;
+
+import ${packageName}.tools.AndroidTool;
+import ${packageName}.BuildConfig;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
@@ -22,8 +24,7 @@ public class MyInterceptor implements ClientHttpRequestInterceptor {
     @RootContext
     Context context;
 
-    @Bean
-    MyBackgroundTask myBackgroundTask;
+ 
 
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] data,
@@ -35,7 +36,7 @@ public class MyInterceptor implements ClientHttpRequestInterceptor {
         }
 
         if (!request.getHeaders().containsKey("isLoading") || Boolean.parseBoolean(request.getHeaders().get("isLoading").get(0))) {
-            myBackgroundTask.showLoading();
+            AndroidTool.showLoadDialog(context);
         }
         return execution.execute(request, data);
     }
