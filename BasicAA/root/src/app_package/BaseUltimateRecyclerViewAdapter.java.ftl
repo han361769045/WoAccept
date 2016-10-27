@@ -15,10 +15,11 @@ import ${packageName}.items.BaseViewHolder;
 import ${packageName}.items.ItemView;
 import ${packageName}.listener.OttoBus;
 import ${packageName}.model.PagerResult;
-import ${packageName}.model.BaseModel;
+import ${packageName}.model.BaseModelJson;
 import ${packageName}.rest.MyErrorHandler;
 import ${packageName}.rest.MyRestClient;
 import ${packageName}.tools.AndroidTool;
+
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Background;
@@ -77,19 +78,19 @@ public abstract class BaseUltimateRecyclerViewAdapter<T> extends LLRecyclerViewA
     public abstract void getMoreData(int pageIndex, int pageSize, boolean isRefresh, Object... objects);
 
     @UiThread
-    protected void afterGetMoreData(BaseModel<PagerResult<T>> result) {
+    protected void afterGetMoreData(BaseModelJson<PagerResult<T>> result) {
         if (result == null) {
-            result = new BaseModel<>();
-        } else if ("0000".equals(result.getCode()) || result.getCode() == null) {
+            result = new BaseModelJson<>();
+        } else if (result.Successful) {
             if (isRefresh) {
                 clear();
             }
-            setTotal(result.getNumInfo().RowCount);
-            if (result.getNumInfo().ListData.size() > 0) {
-                insertAll(result.getNumInfo().ListData, getItems().size());
+            setTotal(result.Data.RowCount);
+            if (result.Data.ListData.size() > 0) {
+                insertAll(result.Data.ListData, getItems().size());
             }
         } else {
-            AndroidTool.showToast(context, result.getDetail());
+            AndroidTool.showToast(context, result.Error);
         }
         if (bus != null) {
             bus.post(result);

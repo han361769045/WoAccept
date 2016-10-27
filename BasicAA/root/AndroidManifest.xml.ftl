@@ -1,6 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <application>
+	    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+	 android:name=".MyApplication_"
+	>
         <activity android:name="activities.${activityClass}_"
             <#if generateActivityTitle!true>
                     android:label="@string/app_name"

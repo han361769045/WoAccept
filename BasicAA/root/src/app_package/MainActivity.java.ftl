@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import ${packageName}.customview.FragmentTabHost;
-
+import ${packageName}.tools.AndroidTool;
 
 import ${packageName}.R;
 

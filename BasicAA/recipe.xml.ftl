@@ -22,13 +22,31 @@
 
 	<instantiate from="root/res/values/arrays.xml.ftl"
                    to="${escapeXmlAttribute(resOut)}/values/arrays.xml" />					
-				   
+	
+	<instantiate from="root/res/values/dimens.xml.ftl"
+                   to="${escapeXmlAttribute(resOut)}/values/dimens.xml" />					   
+	
+	<merge from="root/res/values/colors.xml.ftl"
+                   to="${escapeXmlAttribute(resOut)}/values/colors.xml" />	
+	
+	<instantiate from="root/res/values/bottom_selector.xml.ftl"
+                   to="${escapeXmlAttribute(resOut)}/color/bottom_selector.xml" />		
 	
 	<instantiate from="root/res/layout/activity_main.xml.ftl"
                    to="${escapeXmlAttribute(resOut)}/layout/${layoutName}.xml" />
-				   
+				   					   
     <instantiate from="root/res/layout/tab_indicator.xml.ftl"
-                   to="${escapeXmlAttribute(resOut)}/layout/${tab_indicator}.xml" />					
+                   to="${escapeXmlAttribute(resOut)}/layout/tab_indicator.xml" />	
+				   
+	<instantiate from="root/res/layout/activity_ultimate_recycler_view..xml.ftl"
+					   to="${escapeXmlAttribute(resOut)}/layout/activity_ultimate_recycler_view..xml" />		
+					   
+    <instantiate from="root/res/layout/empty_view.xml.ftl"
+					   to="${escapeXmlAttribute(resOut)}/layout/empty_view.xml" />						   
+				   
+		<!--AndroidTool -->	
+	<instantiate from="root/src/app_package/AndroidTool.java.ftl"
+                 to="${escapeXmlAttribute(srcOut)}/tools/AndroidTool.java" />					   
 				   
 	<!--MyApplication -->	
 	<instantiate from="root/src/app_package/MyApplication.java.ftl"
@@ -123,9 +141,9 @@
 </#if>
    
 <#if useFragment>
-    <open file="${escapeXmlAttribute(resOut)}/layout/${fragmentLayoutName}.xml" />
+   
 <#else>
-    <open file="${escapeXmlAttribute(resOut)}/layout/${simpleLayoutName}.xml" />
+  
 </#if>
 
 </recipe>

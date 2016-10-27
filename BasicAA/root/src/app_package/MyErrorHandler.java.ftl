@@ -6,7 +6,7 @@ import android.util.Log;
 import ${packageName}.tools.AndroidTool;
 
 
-import org.androidannotations.annotations.Bean;
+
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
 import org.androidannotations.rest.spring.api.RestErrorHandler;
@@ -25,7 +25,7 @@ public class MyErrorHandler implements RestErrorHandler {
     public void onRestClientExceptionThrown(NestedRuntimeException arg0) {
         // TODO Auto-generated method stub
         //开启 线程运行 否者报错
-        AndroidTool.dismissdialog();
+        AndroidTool.dismissLoadDialog();
         Log.e(context.getClass().getName(), arg0.getMessage());
     }
 }

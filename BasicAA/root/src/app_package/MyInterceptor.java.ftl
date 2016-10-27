@@ -7,7 +7,7 @@ import android.util.Log;
 import ${packageName}.tools.AndroidTool;
 import ${packageName}.BuildConfig;
 
-import org.androidannotations.annotations.Bean;
+
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
 import org.springframework.http.HttpRequest;

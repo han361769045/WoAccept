@@ -1,7 +1,8 @@
 package ${packageName}.rest;
 
-import org.androidannotations.annotations.Bean;
+import android.content.Context;
 import org.androidannotations.annotations.EBean;
+import org.androidannotations.annotations.RootContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,7 +38,7 @@ public class MyResponseErrorHandlerBean implements ResponseErrorHandler {
 
     private HttpStatus getHttpStatusCode(ClientHttpResponse response) throws IOException {
         HttpStatus statusCode;
-        AndroidTool.dismissdialog();
+        AndroidTool.dismissLoadDialog();
         try {
 //            InputStream stream1 = new BufferedInputStream(response.getBody());
 //            String str = new String(FileCopyUtils.copyToByteArray(stream1));
