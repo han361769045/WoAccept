@@ -13,7 +13,9 @@
         android:label="${label}"
         android:supportsRtl="true"
         android:theme="@style/MyAppTheme">
-        <activity android:name=".activities.LoginActivity_">
+        <activity
+            android:name=".activities.LoginActivity_"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -22,7 +24,8 @@
 
         <activity
             android:name=".activities.MainActivity_"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/MainTheme"/>
         <activity
             android:name=".activities.PaymentActivity_"
             android:screenOrientation="portrait"

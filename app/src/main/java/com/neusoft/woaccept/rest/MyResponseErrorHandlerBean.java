@@ -1,6 +1,7 @@
 package com.neusoft.woaccept.rest;
 
-import org.androidannotations.annotations.Bean;
+import com.neusoft.woaccept.tools.AndroidTool;
+
 import org.androidannotations.annotations.EBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,8 +24,6 @@ import java.nio.charset.Charset;
 @EBean
 public class MyResponseErrorHandlerBean implements ResponseErrorHandler {
 
-    @Bean
-    MyBackgroundTask myBackgroundTask;
 
     @Override
     public boolean hasError(ClientHttpResponse response) throws IOException {
@@ -34,7 +33,7 @@ public class MyResponseErrorHandlerBean implements ResponseErrorHandler {
 
     private HttpStatus getHttpStatusCode(ClientHttpResponse response) throws IOException {
         HttpStatus statusCode;
-        myBackgroundTask.dismissLoading();
+        AndroidTool.dismissLoadDialog();
         try {
 //            InputStream stream1 = new BufferedInputStream(response.getBody());
 //            String str = new String(FileCopyUtils.copyToByteArray(stream1));

@@ -9,6 +9,35 @@
         <item name="android:windowBackground">@color/app_bg</item>
         <!--<item name="android:textColorPrimary">@color/black</item>-->
         <!--<item name="android:textColor">@color/colorAccent</item>-->
+        <item name="android:windowAnimationStyle">@style/default_animation</item>
+    </style>
+
+    <!-- 默认Activity跳转动画 -->
+    <style name="default_animation" parent="@android:style/Animation.Activity">
+        <!--<style name="default_animation" parent="@style/SlideRightAnimation">-->
+
+        <item name="android:windowEnterAnimation">@anim/in_from_right</item>
+        <item name="android:windowExitAnimation">@null</item>
+
+        <item name="android:activityOpenEnterAnimation">@anim/in_from_right</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@anim/out_from_right</item>
+
+        <item name="android:taskOpenEnterAnimation">@anim/in_from_right</item>
+        <item name="android:taskOpenExitAnimation">@null</item>
+        <item name="android:taskCloseEnterAnimation">@null</item>
+        <item name="android:taskCloseExitAnimation">@anim/out_from_right</item>
+
+        <item name="android:taskToFrontEnterAnimation">@anim/in_from_right</item>
+        <item name="android:taskToFrontExitAnimation">@null</item>
+        <item name="android:taskToBackEnterAnimation">@null</item>
+        <item name="android:taskToBackExitAnimation">@anim/out_from_right</item>
+
+    </style>
+
+    <style name="MainTheme" parent="MyAppTheme">
+        <item name="android:windowIsTranslucent">false</item>
     </style>
 
     <style name="MyAppTheme" parent="AppTheme">

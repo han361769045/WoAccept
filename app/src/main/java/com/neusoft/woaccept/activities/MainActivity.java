@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.jude.swipbackhelper.SwipeBackHelper;
 import com.neusoft.woaccept.R;
 import com.neusoft.woaccept.customview.FragmentTabHost;
 import com.neusoft.woaccept.fragments.HomeFragment_;
@@ -14,6 +15,7 @@ import com.neusoft.woaccept.fragments.OrderFragment_;
 import com.neusoft.woaccept.fragments.ServiceFragment_;
 import com.neusoft.woaccept.tools.AndroidTool;
 
+import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
@@ -34,6 +36,12 @@ public class MainActivity extends BaseActivity {
     int[] ids = {R.drawable.tab_menu_home_icon, R.drawable.tab_menu_server_icon, R.drawable.tab_menu_order_icon, R.drawable.tab_menu_user_icon};
 
     long firstTime = 0;
+
+
+    @AfterInject
+    void afterInject() {
+        SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
+    }
 
     @AfterViews
     void afterView() {

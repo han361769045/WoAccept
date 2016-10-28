@@ -17,6 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 
+import com.neusoft.woaccept.R;
+
 import java.util.ArrayList;
 
 /**
@@ -33,6 +35,7 @@ public class FragmentTabHost extends TabHost
     private OnTabChangeListener mOnTabChangeListener;
     private TabInfo mLastTab;
     private boolean mAttached;
+    private int currentTab; // 当前Tab页面索引
 
     static final class TabInfo {
         private final String tag;
@@ -234,6 +237,7 @@ public class FragmentTabHost extends TabHost
                     // active, and it is what we really want to have
                     // as the current tab_add.  Nothing to do.
                     mLastTab = tab;
+                    this.currentTab = i;
                 } else {
                     // This fragment was restored in the active state,
                     // but is not the current tab_add.  Deactivate it.
@@ -292,10 +296,12 @@ public class FragmentTabHost extends TabHost
 
     private FragmentTransaction doTabChanged(String tabId, FragmentTransaction ft) {
         TabInfo newTab = null;
+        int index = 0;
         for (int i = 0; i < mTabs.size(); i++) {
             TabInfo tab = mTabs.get(i);
             if (tab.tag.equals(tabId)) {
                 newTab = tab;
+                index = i;
             }
         }
 //        if (newTab == null) {
@@ -305,6 +311,17 @@ public class FragmentTabHost extends TabHost
             if (ft == null) {
                 ft = mFragmentManager.beginTransaction();
             }
+
+            // 设置切换动画
+            if (index > currentTab) {
+                ft.setCustomAnimations(R.anim.in_from_right,
+                        R.anim.out_from_left);
+            } else if (index < currentTab) {
+                ft.setCustomAnimations(R.anim.in_from_left,
+                        R.anim.out_from_right);
+            }
+            currentTab = index;
+
             if (mLastTab != null) {
                 if (mLastTab.fragment != null) {
                     //ft.detach(mLastTab.fragment); 修改重复创建fragment

@@ -101,6 +101,7 @@ public class LoginActivity extends BaseActivity {
             AndroidTool.showToast(this, no_net);
         } else if ("0000".equals(result.getCode())) {
             app.setResLogin(result);
+            MainActivity_.intent(this).start();
             finish();
         } else {
             AndroidTool.showToast(this, result.getDetail());
