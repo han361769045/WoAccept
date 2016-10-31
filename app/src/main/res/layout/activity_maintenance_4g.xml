@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".activities.Maintenance4GActivity">
+
+    <com.leo.lu.mytitlebar.MyTitleBar
+        android:id="@+id/my_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorPrimary"
+        app:mNavButtonIcon="@drawable/title_back"
+        app:mStatueBarIsTransparent="true"
+        app:mTitle="@string/new_network"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_maintenance_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30dp"
+        android:background="@color/white"
+        android:padding="@dimen/_15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="@string/maintenance_type"
+            android:textColor="@color/app_black_text"
+            android:textSize="@dimen/_14sp"/>
+
+        <TextView
+            android:id="@+id/txt_maintenance_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:drawableEnd="@drawable/right_arrow"
+            android:textColor="@color/app_black_text"
+            android:textSize="@dimen/_15sp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/_15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/text_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_20dp"
+                android:text="@string/maintenance_service_code"
+                android:textColor="@color/app_black_text"
+                android:textSize="@dimen/_14sp"/>
+
+            <com.neusoft.woaccept.customview.ClearEditText
+                android:id="@+id/txt_maintenance_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/text_1"
+                android:background="@drawable/edit_selector"
+                android:inputType="phone"
+                android:textColor="@color/app_black_text"
+                android:textSize="@dimen/_15sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15dp"
+            android:background="@color/white"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/text_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_20dp"
+                android:text="@string/maintenance_phone"
+                android:textColor="@color/app_black_text"
+                android:textSize="@dimen/_14sp"/>
+
+            <EditText
+                android:id="@+id/txt_maintenance_service_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/text_2"
+                android:background="@drawable/edit_selector"
+                android:textColor="@color/app_black_text"
+                android:textSize="@dimen/_15sp"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_submit"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_30dp"
+        android:layout_marginStart="@dimen/_30dp"
+        android:layout_marginTop="@dimen/_30dp"
+        android:background="@drawable/login_btn_bg"
+        android:enabled="false"
+        android:text="@string/submit"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sp"
+        android:textStyle="bold"/>
+
+</LinearLayout>

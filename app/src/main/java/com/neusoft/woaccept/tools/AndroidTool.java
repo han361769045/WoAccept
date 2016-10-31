@@ -1,5 +1,6 @@
 package com.neusoft.woaccept.tools;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -10,12 +11,16 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.neusoft.woaccept.R;
 import com.neusoft.woaccept.customview.CustomProgressDialog;
 
 import java.io.File;
@@ -247,25 +252,56 @@ public class AndroidTool {
 //        }
 //    }
 
-    /**
-     * 显示 Toast
-     *
-     * @param context
-     * @param msg     消息
-     */
-    public static void showToast(Context context, String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+    public static void showToast(Context context, String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
-    /**
-     * 显示 Toast
-     *
-     * @param context
-     * @param msg     消息
-     */
-    public static void showToast(Fragment context, String msg) {
-        Toast.makeText(context.getContext(), msg, Toast.LENGTH_SHORT).show();
+    public static void showToast(Activity context, String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
+
+    public static void showToast(Fragment context, String message) {
+        Toast.makeText(context.getActivity(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showToast(android.app.Fragment context, String message) {
+        Toast.makeText(context.getActivity(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showToast(Context context, int resId) {
+        Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showToast(Activity context, int resId) {
+        Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showToast(Fragment context, int resId) {
+        Toast.makeText(context.getActivity(), resId, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showToast(android.app.Fragment context, int resId) {
+        Toast.makeText(context.getActivity(), resId, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showCustomToast(Activity context, String message) {
+        Toast toast = new Toast(context);
+        LayoutInflater inflate = (LayoutInflater)
+                context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflate.inflate(R.layout.custom_toast, null);
+        ImageView icon = (ImageView) v.findViewById(R.id.img_icon);
+        TextView tv = (TextView) v.findViewById(R.id.txt_message);
+        tv.setText(message);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(v);
+        toast.show();
+    }
+
+    public static void showCustomToast(Activity context, int resId) {
+        showCustomToast(context, context.getResources().getString(resId));
+    }
+
 
     /**
      * @param context

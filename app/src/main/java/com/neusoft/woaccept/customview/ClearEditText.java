@@ -20,7 +20,7 @@ import com.neusoft.woaccept.R;
  */
 public class ClearEditText extends EditText implements OnFocusChangeListener {
     private Context context;
-    private Drawable img;
+    private Drawable mClearDrawable;
 
     public ClearEditText(Context context) {
         super(context);
@@ -41,7 +41,11 @@ public class ClearEditText extends EditText implements OnFocusChangeListener {
     }
 
     private void init() {
-        img = context.getResources().getDrawable(R.drawable.ic_delete);
+        //获取EditText的DrawableRight,假如没有设置我们就使用默认的图片
+        mClearDrawable = getCompoundDrawables()[2];
+        if (mClearDrawable == null) {
+            mClearDrawable = context.getResources().getDrawable(R.drawable.ic_delete);
+        }
         addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -67,9 +71,9 @@ public class ClearEditText extends EditText implements OnFocusChangeListener {
 
     private void setDrawable() {
         if (length() == 0) {
-            setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+            setCompoundDrawablesWithIntrinsicBounds(getCompoundDrawables()[0], getCompoundDrawables()[0], null, getCompoundDrawables()[0]);
         } else {
-            setCompoundDrawablesWithIntrinsicBounds(null, null, img, null);
+            setCompoundDrawablesWithIntrinsicBounds(getCompoundDrawables()[0], getCompoundDrawables()[0], mClearDrawable, getCompoundDrawables()[0]);
         }
     }
 
@@ -77,11 +81,11 @@ public class ClearEditText extends EditText implements OnFocusChangeListener {
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (img != null && event.getAction() == MotionEvent.ACTION_UP) {
+        if (mClearDrawable != null && event.getAction() == MotionEvent.ACTION_UP) {
             int x = (int) event.getX();
             boolean isInnerWidth = (x > (getWidth() - getTotalPaddingRight()))
                     && (x < (getWidth() - getPaddingRight()));
-            Rect rect = img.getBounds();
+            Rect rect = mClearDrawable.getBounds();
             int height = rect.height();
             int y = (int) event.getY();
             int distance = (getHeight() - height) / 2;
@@ -98,7 +102,7 @@ public class ClearEditText extends EditText implements OnFocusChangeListener {
         if (hasFocus) {
             setDrawable();
         } else {
-            setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+            setCompoundDrawablesWithIntrinsicBounds(getCompoundDrawables()[0], getCompoundDrawables()[0], null, getCompoundDrawables()[0]);
         }
     }
 }

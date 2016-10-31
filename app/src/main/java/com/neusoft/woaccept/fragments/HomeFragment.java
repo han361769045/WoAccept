@@ -3,15 +3,14 @@ package com.neusoft.woaccept.fragments;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
-import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.leo.lu.bannerauto.BannerLayout;
+import com.leo.lu.bannerauto.bannertypes.DefaultBannerView;
 import com.neusoft.woaccept.MyApplication;
 import com.neusoft.woaccept.R;
 import com.neusoft.woaccept.activities.NewNetworkActivity_;
 import com.neusoft.woaccept.activities.PaymentActivity_;
 import com.neusoft.woaccept.adapters.BaseRecyclerViewAdapter;
 import com.neusoft.woaccept.adapters.WorkMenuAdapter;
-import com.neusoft.woaccept.customview.GlideSliderView;
 import com.neusoft.woaccept.model.WorkMenuBean;
 
 import org.androidannotations.annotations.AfterViews;
@@ -27,7 +26,7 @@ import org.androidannotations.annotations.ViewById;
 public class HomeFragment extends BaseRecyclerViewFragment<WorkMenuBean> {
 
     @ViewById
-    SliderLayout slider;
+    BannerLayout slider;
 
     @App
     MyApplication app;
@@ -40,12 +39,12 @@ public class HomeFragment extends BaseRecyclerViewFragment<WorkMenuBean> {
     @AfterViews
     void afterView() {
         for (int i = 0; i < 3; i++) {
-            GlideSliderView textSliderView = new GlideSliderView(getActivity());
-            textSliderView.image(R.drawable.home_ad);
+            DefaultBannerView defaultBannerView = new DefaultBannerView(getActivity());
+            defaultBannerView.image(R.drawable.home_ad);
             Bundle bundle = new Bundle();
-            textSliderView.bundle(bundle);
-            textSliderView.setScaleType(BaseSliderView.ScaleType.Fit);
-            slider.addSlider(textSliderView);
+            defaultBannerView.bundle(bundle);
+            defaultBannerView.setScaleType(DefaultBannerView.ScaleType.Fit);
+            slider.addBanner(defaultBannerView);
         }
         horizontalItem(4);
         myAdapter.getMoreData(app.getResLogin().getWorkMenu());

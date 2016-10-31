@@ -141,7 +141,7 @@ public class LoginActivity extends BaseActivity {
         } else if ("0000".equals(result.getCode())) {
             sms.setText(result.getCheckCode());
             sessionId = result.getSessionID();
-            AndroidTool.showToast(this, login_sms_tip);
+            AndroidTool.showCustomToast(this, login_sms_tip);
         } else {
             AndroidTool.showToast(this, result.getDetail());
         }

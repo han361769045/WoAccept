@@ -174,4 +174,12 @@
     <string name="complete">完成</string>
     <string name="back">返回</string>
     <string name="save">保存</string>
+
+    <!-- maintenance 4g -->
+    <string name="maintenance_title">4G登网维护</string>
+    <string name="maintenance_type">登网类别</string>
+    <string name="maintenance_service_code">业务号码</string>
+    <string name="maintenance_phone">手机串码</string>
+    <string name="maintenance_type_one">农村渠道3/4G登网</string>
+    <string name="maintenance_type_two">非农村渠道4G登网</string>
 </resources>
